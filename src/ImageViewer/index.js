@@ -281,8 +281,9 @@ export default class ImageViewer extends React.Component {
                 flatListProps={this.props.pagesFlatListProps}
                 pageMargin={this.props.pageMargin}
                 onPageScrollStateChanged={(state) => {
-                  console.log(state);
-                  this.props.onPageScrollStateChanged ? this.props.onPageScrollStateChanged(state) : undefined;
+                  this.props.onPageScrollStateChanged
+                    ? this.props.onPageScrollStateChanged(state)
+                    : undefined;
                 }}
                 onPageScroll={this.props.onPageScroll}
                 scrollViewStyle={this.props.pageScrollViewStyle}

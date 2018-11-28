@@ -172,7 +172,17 @@ export default class CameraRollBrowser extends React.Component {
         keyExtractor={(item, index) => item.id + index.toString()}
       />
     ) : (
-      <Text style={[{textAlign: "center"}, emptyTextStyle]}>{emptyText}</Text>
+      <FlatList
+        style={{flex: 1}}
+        ListHeaderComponent={this.props.cameraRollListHeader}
+        ListFooterComponent={this.props.cameraRollListFooter}
+        data={[{
+          emptyText,
+          emptyTextStyle
+        }]}
+        renderItem={this._renderError}
+        keyExtractor={(item, index) => item.id + index.toString()}
+      />
     );
 
     return (
@@ -219,6 +229,12 @@ export default class CameraRollBrowser extends React.Component {
         onPressImage={openImageViewer}
         findMediaIndex={findMediaIndex}
       />
+    );
+  }
+
+  _renderError = ({ item }) => {
+    return (
+      <Text style={[{textAlign: "center"}, item.emptyTextStyle]}>{item.emptyText}</Text>
     );
   }
 

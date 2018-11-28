@@ -1,0 +1,66 @@
+{
+  "version": "1.0.0",
+  "name": "react-native-camera-roll-gallery",
+  "description": "An easy and simple to use React Native component to render a custom layout for CameraRoll photos (next update will have videos) and displayed on a custom interactive image viewer for manipulation. Includes animations and support for both iOS and Android.",
+  "keywords": [
+    "react-native-camera-roll-gallery",
+    "react-native",
+    "gallery",
+    "images",
+    "album",
+    "swiper",
+    "pinch",
+    "zoom",
+    "double tap",
+    "camera roll",
+    "pictures",
+    "animated",
+    "animation",
+    "photo",
+    "video",
+    "ios",
+    "android"
+  ],
+  "homepage": "https://github.com/Luehang/react-native-camera-roll-gallery",
+  "author": {
+    "name": "Lue Hang",
+    "email": "lue_hang@hotmail.com",
+    "url": "https://www.luehangs.site"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Luehang/react-native-camera-roll-gallery"
+  },
+  "bugs": {
+    "url": "https://github.com/Luehang/react-native-camera-roll-gallery/issues"
+  },
+  "directories": {
+    "example": "./example",
+    "src": "./src"
+  },
+  "main": "./index.js",
+  "dependencies": {
+    "prop-types": "^15.6.2",
+    "react-native-gallery-swiper": "^1.1.2"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "devDependencies": {
+    "react": "^16.6.3",
+    "react-native": "^0.57.7",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.9.0",
+    "eslint-plugin-flowtype": "^3.2.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-react-native": "^3.5.0"
+  },
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "lint": "./node_modules/.bin/eslint index.js src/"
+  },
+  "license": "MIT"
+}

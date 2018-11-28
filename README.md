@@ -1,7 +1,7 @@
 <a href="https://luehangs.site"><img src="https://luehangs.site/images/react-native-camera-roll-gallery-main.jpg" alt="react-native-camera-roll-gallery"/></a>
 
 > An easy and simple to use React Native component to render a custom layout for CameraRoll 
-photos (next update will have videos) and displayed on a custom interactive image viewer for manipulation. Includes animations and support for both iOS and Android. Free and made possible by [Lue Hang](https://www.facebook.com/lue.hang) (the author) along with costly maintenance and updates.
+photos (next update will have videos) and displayed on a custom interactive image viewer for manipulation. Includes animations and support for both iOS and Android. Free and made possible along with costly maintenance and updates by [Lue Hang](https://www.facebook.com/lue.hang) (the author).
 
 <a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH BLOG"/></a>
 
@@ -258,7 +258,7 @@ Not sure where to start, or a beginner? Take a look at the [issues page](https:/
 <img src="https://www.luehangs.site/images/lue-hang2018-circle-150px.png"/>
 </a>
 
-Free and made possible by [Lue Hang](https://www.facebook.com/lue.hang) (the author) along with costly maintenance and updates.
+Free and made possible along with costly maintenance and updates by [Lue Hang](https://www.facebook.com/lue.hang) (the author).
 
 ### Contributors
 

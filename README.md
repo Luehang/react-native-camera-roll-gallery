@@ -14,7 +14,6 @@ Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-nativ
 ## Index
 
 - [Getting Started](#getting-started)
-- [Automatic Installation](#automatic-installation)
 - [Manual Installation](#manual-installation)
 - [Usage Example](#usage-example)
 - [API](#api)
@@ -41,38 +40,15 @@ $ yarn add react-native-camera-roll-gallery
 
 **No further installation is required for Android.**
 
-### Automatic Installation (iOS)
-
-**No further installation is required for Android.**
-
-Link the native dependencies for iOS.
-
-```bash
-$ react-native link react-native-camera-roll-gallery
-```
-
-**Important:** On devices running **iOS 10 or later**, user's permission is required to access the Camera Roll.  Add the `NSPhotoLibraryUsageDescription` key in your `Info.plist` with a string that describes how your app will use this data. This key will appear as `Privacy - Photo Library Usage Description` in **Xcode**.
-
-```xml
-<dict>
-    <!-- ... -->
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Requesting access to the photo library.</string>
-    <!-- ... -->
-</dict>
-```
-
 <a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH BLOG"/></a>
 
 ### Manual Installation (iOS)
 
 **No further installation is required for Android.**
 
-If automatic linking doesn't work, follow these steps.
-
 1. `react-native-camera-roll-gallery` uses React Native's [`CameraRoll`](https://facebook.github.io/react-native/docs/cameraroll) API. It requires the `RCTCameraRoll` library to be linked. Learn more about [Linking Libraries (iOS) clicking here](https://facebook.github.io/react-native/docs/linking-libraries-ios) or read for further instructions.
 
-2. Access the `node_modules/react-native-camera-roll-gallery/ios` or `node_modules/react-native/Libraries/CameraRoll` directory and look for `RCTCameraRoll.xcodeproj`.  Drag this file to your project on Xcode (usually under the `Libraries` group on Xcode).
+2. Access the `node_modules/react-native/Libraries/CameraRoll` directory and look for `RCTCameraRoll.xcodeproj`.  Drag this file to your project on Xcode (usually under the `Libraries` group on Xcode).
 
 ![iOS Linking Libraries: Add to Libraries](https://luehangs.site/images/add-to-libraries.jpg)
 

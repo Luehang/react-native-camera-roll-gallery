@@ -1,4 +1,4 @@
-<a href="https://luehangs.site"><img src="https://luehangs.site/images/react-native-camera-roll-gallery-main.jpg" alt="react-native-camera-roll-gallery"/></a>
+<a href="https://luehangs.site/lue_hang/projects/react-native-camera-roll-gallery"><img src="https://luehangs.site/images/react-native-camera-roll-gallery-main.jpg" alt="react-native-camera-roll-gallery"/></a>
 
 > An easy and simple to use React Native component to render a custom layout for CameraRoll 
 photos (next update will have videos) and displayed on a custom interactive image viewer for manipulation. Includes animations and support for both iOS and Android. Free and made possible along with costly maintenance and updates by [Lue Hang](https://www.facebook.com/lue.hang) (the author).
@@ -21,6 +21,7 @@ Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-nativ
 - [Props](#props)
 - [Scroll State and Events](#scroll-state-and-events)
 - [Example Project](#example-project)
+- [Author](#author)
 - [Contribute](#contribute)
 - [License](#license)
 
@@ -38,19 +39,34 @@ or
 $ yarn add react-native-camera-roll-gallery
 ```
 
-No further installation is required for **Android**.
+**No further installation is required for Android.**
 
 ### Automatic Installation (iOS)
 
-Link the native dependencies.
+**No further installation is required for Android.**
+
+Link the native dependencies for iOS.
 
 ```bash
 $ react-native link react-native-camera-roll-gallery
 ```
 
+**Important:** On devices running **iOS 11 or later**, it is required to add the `NSPhotoLibraryAddUsageDescription` key in your `Info.plist`.  After that, define a string that describes how your app will use this data.  By adding this key to your `Info.plist`, you will be able to request write-only access permission from the user. If you try to save to the camera roll without this permission, your app will exit.
+
+```xml
+<dict>
+    <!-- ... -->
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>Requesting write-only access permission.</string>
+    <!-- ... -->
+</dict>
+```
+
 <a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH BLOG"/></a>
 
 ### Manual Installation (iOS)
+
+**No further installation is required for Android.**
 
 If automatic linking doesn't work, follow these steps.
 
@@ -64,7 +80,7 @@ If automatic linking doesn't work, follow these steps.
 
 ![iOS Linking Libraries: Add to Build Phases](https://luehangs.site/images/add-to-build-phases.jpg)
 
-**Optional:** On devices running **iOS 10 or later**, user's permission is required to access the Camera Roll.  Add the `NSPhotoLibraryUsageDescription` key in your `Info.plist` with a string that describes how your app will use this data. This key will appear as `Privacy - Photo Library Usage Description` in **Xcode**.
+**Important:** On devices running **iOS 10 or later**, user's permission is required to access the Camera Roll.  Add the `NSPhotoLibraryUsageDescription` key in your `Info.plist` with a string that describes how your app will use this data. This key will appear as `Privacy - Photo Library Usage Description` in **Xcode**.
 
 ```xml
 <dict>
@@ -244,6 +260,14 @@ $ cd react-native-camera-roll-gallery/example/
 
 <a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH BLOG"/></a>
 
+## Author
+
+<a href="https://www.facebook.com/lue.hang">
+<img src="https://www.luehangs.site/images/lue-hang2018-circle-150px.png"/>
+</a>
+
+Free and made possible along with costly maintenance and updates by [Lue Hang](https://www.facebook.com/lue.hang) (the author).
+
 ## Contribute
 
 [Pull requests](https://github.com/Luehang/react-native-camera-roll-gallery/pulls) are welcomed.
@@ -251,14 +275,6 @@ $ cd react-native-camera-roll-gallery/example/
 ### Beginners
 
 Not sure where to start, or a beginner? Take a look at the [issues page](https://github.com/Luehang/react-native-camera-roll-gallery/issues).
-
-### Author
-
-<a href="https://www.facebook.com/lue.hang">
-<img src="https://www.luehangs.site/images/lue-hang2018-circle-150px.png"/>
-</a>
-
-Free and made possible along with costly maintenance and updates by [Lue Hang](https://www.facebook.com/lue.hang) (the author).
 
 ### Contributors
 

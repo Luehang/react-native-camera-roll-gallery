@@ -51,13 +51,13 @@ Link the native dependencies for iOS.
 $ react-native link react-native-camera-roll-gallery
 ```
 
-**Important:** On devices running **iOS 11 or later**, it is required to add the `NSPhotoLibraryAddUsageDescription` key in your `Info.plist`.  After that, define a string that describes how your app will use this data.  By adding this key to your `Info.plist`, you will be able to request write-only access permission from the user. If you try to save to the camera roll without this permission, your app will exit.
+**Important:** On devices running **iOS 10 or later**, user's permission is required to access the Camera Roll.  Add the `NSPhotoLibraryUsageDescription` key in your `Info.plist` with a string that describes how your app will use this data. This key will appear as `Privacy - Photo Library Usage Description` in **Xcode**.
 
 ```xml
 <dict>
     <!-- ... -->
-    <key>NSPhotoLibraryAddUsageDescription</key>
-    <string>Requesting write-only access permission.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Requesting access to the photo library.</string>
     <!-- ... -->
 </dict>
 ```

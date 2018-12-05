@@ -146,37 +146,37 @@ render() {
 
 ### Props
 
-| Props                         | Type              | Description                                                                                                                                                                                    | Default |
-|-------------------------------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
-| `imagesPerRow`                | `number`          | Number of images per row. | 3 |
-| `imageMargin`                 | `number`          | Margin size of one image. | 5 |
-| `containerWidth`              | `number`          | Width of Camera Roll layout container. | device width |
-| `initialNumToRender`          | `number`          | Specifies how many items we want to render on our first render pass for the Camera Roll layout. | 6 |
-| `removeClippedSubViews`       | `Boolean`         | "When true, offscreen child views (whose overflow value is hidden) are removed from their native backing superview when offscreen. This can improve scrolling performance on long lists. The default value is true. | true | 
-| `groupTypes`                  | `String`          | The group where the photos will be fetched, one of "Album", "All", "Event", "Faces", "Library", "PhotoStream" and "SavedPhotos". | "SavedPhotos" |
-| `assetType`                   | `String`          | The asset type, one of "Photos", "Videos" or "All". | "Photos" |
-| `backgroundColor`             | `String`          | Set background color of Camera Roll layout. | "white" |
-| `emptyText`                   | `String`          | Text to display instead of a list when there are no photos found. | "No photos." |
-| `emptyTextStyle`              | `Object`          | Styles to apply to the `emptyText`. | {textAlign: "center"} |
-| `loader`                      | `React.Component` | Camera Roll loader component node. | `<ActivityIndicator />` |
-| `cameraRollFlatListProps`     | `Object`          | Props to be passed to the underlying `FlatList` Camera Roll layout.  See [`FlatList props...`](https://facebook.github.io/react-native/docs/flatlist#props) | |
-| `cameraRollListHeader`        | `Function`        | Custom function to render the Camera Roll list header.  This function must return a React Component. | |
-| `cameraRollListFooter`        | `Function`        | Custom function to render the Camera Roll list footer.  This function must return a React Component. | |
-| `imageContainerStyle`         | `Object`          | The styles object which is added to the Image component. | {} |
-| `renderIndividualHeader`      | `Function`        | Custom function that is executed **ABOVE** each individual image.  First param is the individual data and second param is the index.  This function must return a React Component. | |
-| `renderIndividualFooter`      | `Function`        | Custom function that is executed **BELOW** each individual image.  First param is the individual data and second param is the index.  This function must return a React Component. | |
-| `imagePageComponent`          | `Function`        | Custom function to render the images for gallery.  First param is the image props and second param is the dimensions. | `<Image/>` component |
-| `errorPageComponent`          | `Function`        | Custom function to render the page of an image in gallery that couldn't be displayed. | `<View/>` with stylized error |
-| `renderPageHeader`            | `Function`        | Custom function to render gallery page header and must return a React Component.  First param is the individual data and second param is the index.  Third param is the onClose function to close gallery pages and return to the masonry layout. | |
-| `renderPageFooter`            | `Function`        | Custom function to render gallery page footer and must return a React Component.  First param is the individual data and second param is the index.  Third param is the onClose function to close gallery pages and return to the masonry layout. | |
-| `pagesFlatListProps`          | `Object`          | Props to be passed to the underlying `FlatList` gallery.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist) | {windowSize: 3} |
-| `pageMargin`                  | `number`          | Blank space to show between images in gallery. | 0 |
-| `onPageSelected`              | `Function`        | Fired with the index of page that has been selected in gallery. | |
-| `onPageScrollStateChanged`    | `Function`        | Called when page scrolling state has changed in gallery.  See [scroll state and events...](#scroll-state-and-events) | |
-| `onPageScroll`                | `Function`        | Scroll event for page gallery.  See [scroll state and events...](#scroll-state-and-events) | |
-| `pageScrollViewStyle`         | `Object`          | Custom style for the `FlatList` component for gallery. | {} |
-| `onPageSingleTapConfirmed`    | `Function`        | Fired after a single tap on page in gallery. | |
-| `onPageLongPress`             | `Function`        | Fired after a long press on page in gallery. | |
+| Props                         | Description                                                                                                                                                                                    | Type              | Default |
+|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|
+| `imagesPerRow`                | Number of images per row. | `number` | 3 |
+| `imageMargin`                 | Margin size of one image. | `number` | 5 |
+| `containerWidth`              | Width of Camera Roll layout container. | `number` | device width |
+| `initialNumToRender`          | Specifies how many items we want to render on our first render pass for the Camera Roll layout. | `number` | 6 |
+| `removeClippedSubViews`       | "When true, offscreen child views (whose overflow value is hidden) are removed from their native backing superview when offscreen. This can improve scrolling performance on long lists. The default value is true. | `Boolean` | true | 
+| `groupTypes`                  | The group where the photos will be fetched, one of "Album", "All", "Event", "Faces", "Library", "PhotoStream" and "SavedPhotos". | `String` | "SavedPhotos" |
+| `assetType`                   | The asset type, one of "Photos", "Videos" or "All". | `String` | "Photos" |
+| `backgroundColor`             | Set background color of Camera Roll layout. | `String` | "white" |
+| `emptyText`                   | Text to display instead of a list when there are no photos found. | `String` | "No photos." |
+| `emptyTextStyle`              | Styles to apply to the `emptyText`. | `Object` | {textAlign: "center"} |
+| `loader`                      | Camera Roll loader component node. | `React.Component` | `<ActivityIndicator />` |
+| `cameraRollFlatListProps`     | Props to be passed to the underlying `FlatList` Camera Roll layout.  See [`FlatList props...`](https://facebook.github.io/react-native/docs/flatlist#props) | `Object` | |
+| `cameraRollListHeader`        | Custom function to render the Camera Roll list header.  This function must return a React Component. | `Function` | |
+| `cameraRollListFooter`        | Custom function to render the Camera Roll list footer.  This function must return a React Component. | `Function` | |
+| `imageContainerStyle`         | The styles object which is added to the Image component. | `Object` | {} |
+| `renderIndividualHeader`      | Custom function that is executed **ABOVE** each individual image.  First param is the individual data and second param is the index.  This function must return a React Component. | `Function` | |
+| `renderIndividualFooter`      | Custom function that is executed **BELOW** each individual image.  First param is the individual data and second param is the index.  This function must return a React Component. | `Function` | |
+| `imagePageComponent`          | Custom function to render the images for gallery.  First param is the image props and second param is the dimensions. | `Function` | `<Image/>` component |
+| `errorPageComponent`          | Custom function to render the page of an image in gallery that couldn't be displayed. | `Function` | `<View/>` with stylized error |
+| `renderPageHeader`            | Custom function to render gallery page header and must return a React Component.  First param is the individual data and second param is the index.  Third param is the onClose function to close gallery pages and return to the masonry layout. | `Function` | |
+| `renderPageFooter`            | Custom function to render gallery page footer and must return a React Component.  First param is the individual data and second param is the index.  Third param is the onClose function to close gallery pages and return to the masonry layout. | `Function` | |
+| `pagesFlatListProps`          | Props to be passed to the underlying `FlatList` gallery.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist) | `Object` | {windowSize: 3} |
+| `pageMargin`                  | Blank space to show between images in gallery. | `number` | 0 |
+| `onPageSelected`              | Fired with the index of page that has been selected in gallery. | `Function` | |
+| `onPageScrollStateChanged`    | Called when page scrolling state has changed in gallery.  See [scroll state and events...](#scroll-state-and-events) | `Function` | |
+| `onPageScroll`                | Scroll event for page gallery.  See [scroll state and events...](#scroll-state-and-events) | `Function` | |
+| `pageScrollViewStyle`         | Custom style for the `FlatList` component for gallery. | `Object` | {} |
+| `onPageSingleTapConfirmed`    | Fired after a single tap on page in gallery. | `Function` | |
+| `onPageLongPress`             | Fired after a long press on page in gallery. | `Function` | |
 
 <a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH BLOG"/></a>
 

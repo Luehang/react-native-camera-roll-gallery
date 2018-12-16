@@ -64,9 +64,9 @@ export default class CameraRollBrowser extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentWillMount = async () => {
     if (Platform.OS === "android") {
-      PermissionsAndroid.request(
+      await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
         {
           "title": "Read Storage Permission",

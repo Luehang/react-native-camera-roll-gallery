@@ -46,6 +46,8 @@ $ yarn add react-native-camera-roll-gallery
 
 **No further installation is required for Android.**
 
+**THIS IS A REACT NATIVE REQUIREMENT.**
+
 1. `react-native-camera-roll-gallery` uses React Native's [`CameraRoll`](https://facebook.github.io/react-native/docs/cameraroll) API. It requires the `RCTCameraRoll` library to be linked. Learn more about [Linking Libraries (iOS) clicking here](https://facebook.github.io/react-native/docs/linking-libraries-ios) or read for further instructions.
 
 2. Access the `node_modules/react-native/Libraries/CameraRoll` directory and look for `RCTCameraRoll.xcodeproj`.  Drag this file to your project on Xcode (usually under the `Libraries` group on Xcode).
@@ -184,7 +186,7 @@ render() {
 
 Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-native-gallery-swiper).
 
-* `onPageScroll` : (event) => {}. 
+* `onPageScroll` : (event: { position: number, offset: number, fraction: number }) => {}
 
   The event object carries the following data: 
 
@@ -192,7 +194,7 @@ Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-nativ
   * `offset`: value from range [0,1) describing stage between page transitions.
   * `fraction`: means that (1 - x) fraction of the page at "position" index is visible, and x fraction of the next page is visible.
 
-* `onPageScrollStateChanged` : (state) => {}.
+* `onPageScrollStateChanged` : (state: string) => {}
 
   Called when the page scrolling state has changed. The page scrolling state can be in 3 states:
 

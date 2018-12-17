@@ -146,7 +146,9 @@ render() {
 
 ``<CameraRollGallery />`` component accepts the following props...
 
-### Props
+## Props
+
+### Camera Roll Layout Props of ``<CameraRollGallery />``
 
 | Props                         | Description                                                                                                                                                                                    | Type              | Default |
 |-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|
@@ -167,6 +169,13 @@ render() {
 | `imageContainerStyle`         | The styles object which is added to the Image component. | `Object` | {} |
 | `renderIndividualHeader`      | Custom function that is executed **ABOVE** each individual image.  First param is the individual data and second param is the index.  This function must return a React Component. | `Function` | |
 | `renderIndividualFooter`      | Custom function that is executed **BELOW** each individual image.  First param is the individual data and second param is the index.  This function must return a React Component. | `Function` | |
+
+<a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH BLOG"/></a>
+
+### Gallery Props of ``<CameraRollGallery />``
+
+| Props                         | Description                                                                                                                                                                                    | Type              | Default |
+|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|
 | `imagePageComponent`          | Custom function to render the images for gallery.  First param is the image props and second param is the dimensions. | `Function` | `<Image/>` component |
 | `errorPageComponent`          | Custom function to render the page of an image in gallery that couldn't be displayed. | `Function` | `<View/>` with stylized error |
 | `renderPageHeader`            | Custom function to render gallery page header and must return a React Component.  First param is the individual data and second param is the index.  Third param is the onClose function to close gallery pages and return to the masonry layout. | `Function` | |

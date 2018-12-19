@@ -182,6 +182,7 @@ render() {
 | `renderPageFooter`            | Custom function to render gallery page footer and must return a React Component.  First param is the individual data and second param is the index.  Third param is the onClose function to close gallery pages and return to the masonry layout. | `Function` | |
 | `pagesFlatListProps`          | Props to be passed to the underlying `FlatList` gallery.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist) | `Object` | {windowSize: 3} |
 | `pageMargin`                  | Blank space to show between images in gallery. | `number` | 0 |
+| `sensitivePageScroll`         | Whether to enable an intelligent detection to detect rough and fast swiping gestures in order to "cushion" or slow down a swipe at the end. **Version ^1.2.0 update**. | `Boolean` | `false` |
 | `onPageSelected`              | Fired with the index of page that has been selected in gallery. | `Function` | |
 | `onPageScrollStateChanged`    | Called when page scrolling state has changed in gallery.  See [scroll state and events...](#scroll-state-and-events) | `Function` | |
 | `onPageScroll`                | Scroll event for page gallery.  See [scroll state and events...](#scroll-state-and-events) | `Function` | |
@@ -195,21 +196,21 @@ render() {
 
 Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-native-gallery-swiper).
 
-* `onPageScroll` : (event: { position: number, offset: number, fraction: number }) => {}
+* `onPageScroll(event: { position: number, offset: number, fraction: number }) => void`
 
   The event object carries the following data: 
 
-  * `position`:  index of first page from the left that is currently visible.
-  * `offset`: value from range [0,1) describing stage between page transitions.
-  * `fraction`: means that (1 - x) fraction of the page at "position" index is visible, and x fraction of the next page is visible.
+  * `position: number`:  index of first page from the left that is currently visible.
+  * `offset: number`: value from range [0,1) describing stage between page transitions.
+  * `fraction: number`: means that (1 - x) fraction of the page at "position" index is visible, and x fraction of the next page is visible.
 
-* `onPageScrollStateChanged` : (state: string) => {}
+* `onPageScrollStateChanged(state: string) => void`
 
   Called when the page scrolling state has changed. The page scrolling state can be in 3 states:
 
-  * `'idle'`: there is no interaction with the page scroller happening at the time.
-  * `'dragging'`: there is currently an interaction with the page scroller.
-  * `'settling'`: there was an interaction with the page scroller, and the page scroller is now finishing its closing or opening animation.
+  * `'idle': string`: there is no interaction with the page scroller happening at the time.
+  * `'dragging': string`: there is currently an interaction with the page scroller.
+  * `'settling': string`: there was an interaction with the page scroller, and the page scroller is now finishing its closing or opening animation.
 
 ## Example Project
 

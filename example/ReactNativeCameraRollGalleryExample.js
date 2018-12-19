@@ -23,8 +23,7 @@ export default class ReactNativeCameraRollGalleryExample extends Component {
         <View style={[styles.statusBarTop, styles.header, styles.mobileHeader]}>
           <Text style={[styles.title, styles.whiteText]}>Camera Roll</Text>
         </View>
-        <View style={styles.listTab}>
-        </View>
+        <View style={styles.listTab}/>
       </View>
     );
   }

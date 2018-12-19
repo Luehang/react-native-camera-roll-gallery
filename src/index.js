@@ -50,6 +50,7 @@ export default class CameraRollGallery extends React.Component {
     errorPageComponent: PropTypes.func,
     pagesFlatListProps: PropTypes.object,
     pageMargin: PropTypes.number,
+    sensitivePageScroll: PropTypes.bool,
     onPageSelected: PropTypes.func,
     onPageScrollStateChanged: PropTypes.func,
     onPageScroll: PropTypes.func,
@@ -70,6 +71,7 @@ export default class CameraRollGallery extends React.Component {
     backgroundColor: "white",
     emptyText: "No photos.",
     imageContainerStyle: {},
+    sensitivePageScroll: false
   }
 
   static childContextTypes = {
@@ -187,6 +189,7 @@ export default class CameraRollGallery extends React.Component {
                   errorPageComponent={this.props.errorPageComponent}
                   pagesFlatListProps={this.props.pagesFlatListProps}
                   pageMargin={this.props.pageMargin}
+                  sensitivePageScroll={this.props.sensitivePageScroll}
                   onPageSelected={this.props.onPageSelected}
                   onPageScrollStateChanged={this.props.onPageScrollStateChanged}
                   onPageScroll={this.props.onPageScroll}

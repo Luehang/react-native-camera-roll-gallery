@@ -79,6 +79,7 @@ export default class ImageViewer extends React.Component {
     errorPageComponent: PropTypes.func,
     pagesFlatListProps: PropTypes.object,
     pageMargin: PropTypes.number,
+    sensitivePageScroll: PropTypes.bool,
     onPageSelected: PropTypes.func,
     onPageScrollStateChanged: PropTypes.func,
     onPageScroll: PropTypes.func,
@@ -279,6 +280,7 @@ export default class ImageViewer extends React.Component {
                 initialPage={this.props.galleryInitialIndex}
                 errorComponent={this.props.errorPageComponent}
                 flatListProps={this.props.pagesFlatListProps}
+                sensitivePageScroll={this.props.sensitivePageScroll}
                 pageMargin={this.props.pageMargin}
                 onPageScrollStateChanged={(state) => {
                   this.props.onPageScrollStateChanged
@@ -367,6 +369,7 @@ export default class ImageViewer extends React.Component {
             errorComponent={this.props.errorPageComponent}
             flatListProps={this.props.pagesFlatListProps}
             pageMargin={this.props.pageMargin}
+            sensitivePageScroll={this.props.sensitivePageScroll}
             onPageScrollStateChanged={this.props.onPageScrollStateChanged}
             onPageScroll={this.props.onPageScroll}
             scrollViewStyle={this.props.pageScrollViewStyle}

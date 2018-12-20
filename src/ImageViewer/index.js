@@ -281,15 +281,9 @@ export default class ImageViewer extends React.Component {
                 openImageMeasurements={openImageMeasurements}
                 imageComponent={(imageProps, imageDimensions, index) => {
                   if (!this.props.imagePageComponent) {
-                    return (
-                      <Image
-                        {...imageProps}
-                      />
-                    );
+                    return <Image {...imageProps} />;
                   } else {
-                    return (
-                      this.props.imagePageComponent(imageProps, imageDimensions)
-                    );
+                    return this.props.imagePageComponent(imageProps, imageDimensions, index);
                   }
                 }}
                 onPageSelected={(index) => {
@@ -302,9 +296,8 @@ export default class ImageViewer extends React.Component {
                       }
                     );
                   }
-                  this.props.onPageSelected
-                    ? this.props.onPageSelected(index)
-                    : null;
+                  this.props.onPageSelected &&
+                    this.props.onPageSelected(index);
                 }}
               />
               <Footer
@@ -362,17 +355,11 @@ export default class ImageViewer extends React.Component {
             scrollViewStyle={this.props.pageScrollViewStyle}
             onSingleTapConfirmed={this.props.onPageSingleTapConfirmed}
             onLongPress={this.props.onPageLongPress}
-            imageComponent={(imageProps, imageDimensions) => {
+            imageComponent={(imageProps, imageDimensions, index) => {
               if (!this.props.imagePageComponent) {
-                return (
-                  <Image
-                    {...imageProps}
-                  />
-                );
+                return <Image {...imageProps} />;
               } else {
-                return (
-                  this.props.imagePageComponent(imageProps, imageDimensions)
-                );
+                return this.props.imagePageComponent(imageProps, imageDimensions, index);
               }
             }}
             onPageSelected={(index) => {
@@ -385,9 +372,8 @@ export default class ImageViewer extends React.Component {
                   }
                 );
               }
-              this.props.onPageSelected
-                ? this.props.onPageSelected(index)
-                : null;
+              this.props.onPageSelected &&
+                this.props.onPageSelected(index);
             }}
           />
           <Footer

@@ -1,54 +1,16 @@
 import React from "react";
-import { Easing, Platform, Animated, Image, View, StyleSheet, Dimensions } from "react-native";
+import { Easing, Platform, Animated, Image, StyleSheet, Dimensions } from "react-native";
 import GallerySwiper from "react-native-gallery-swiper";
 import PropTypes from "prop-types";
 import ViewerBackground from "./ViewerBackground";
 import ScrollSpacerView from "./ScrollSpacerView";
 import ImageTransitionView from "./ImageTransitionView";
+import Header from "./Header";
+import Footer from "./Footer";
 
 import type { ImageMeasurements } from "./Utils";
 
-class Footer extends React.PureComponent {
-  static propTypes = {
-    renderPageFooter: PropTypes.func,
-    images: PropTypes.array.isRequired,
-    galleryIndex: PropTypes.number.isRequired,
-    onClose: PropTypes.func.isRequired
-  }
-
-  render() {
-    const { renderPageFooter, images, galleryIndex, onClose } = this.props;
-    const footer = renderPageFooter &&
-      renderPageFooter(images[galleryIndex], galleryIndex, onClose);
-    return (
-      <View style={{ bottom: 0, width: "100%", position: "absolute", zIndex: 1000 }}>
-        { footer }
-      </View>
-    );
-  }
-}
-
-class Header extends React.PureComponent {
-  static propTypes = {
-    renderPageHeader: PropTypes.func,
-    images: PropTypes.array.isRequired,
-    galleryIndex: PropTypes.number.isRequired,
-    onClose: PropTypes.func.isRequired
-  }
-
-  render() {
-    const { renderPageHeader, images, galleryIndex, onClose } = this.props;
-    const header = this.props.renderPageHeader &&
-      renderPageHeader(images[galleryIndex], galleryIndex, onClose);
-    return (
-      <View style={{ top: 0, width: "100%", position: "absolute", zIndex: 1000 }}>
-        { header }
-      </View>
-    );
-  }
-}
-
-export default class ImageViewer extends React.Component {
+export default class ImageViewer extends React.PureComponent {
   static propTypes = {
     images: PropTypes.array.isRequired,
     imageId: PropTypes.string.isRequired,
@@ -188,116 +150,108 @@ export default class ImageViewer extends React.Component {
     }
   }
 
-  _renderVerticalScrollView(
+  _renderIOSVerticalScrollView(
     width: Animated.Value,
     height: Animated.Value,
-    imageSource: ?ImageSource,
     openImageMeasurements: ?ImageMeasurements,
-    openProgress: any,
     transitionProgress: any
   ) {
     const { renderPageHeader, renderPageFooter, images, galleryIndex, onClose } = this.props;
-    if (Platform.OS === "ios") {
-      return (
-        <Animated.ScrollView
-          ref={this._handleRef}
-          onScroll={Animated.event(
-            [
-              {
-                nativeEvent: {
-                  contentOffset: { y: this.state.dismissScrollProgress }
-                }
+    return (
+      <Animated.ScrollView
+        ref={this._handleRef}
+        onScroll={Animated.event(
+          [
+            {
+              nativeEvent: {
+                contentOffset: { y: this.state.dismissScrollProgress }
               }
-            ],
-            { useNativeDriver: true, listener: this._onScroll }
-          )}
-          scrollEventThrottle={1}
-          pagingEnabled={true}
-          showsVerticalScrollIndicator={false}
+            }
+          ],
+          { useNativeDriver: true, listener: this._onScroll }
+        )}
+        scrollEventThrottle={1}
+        pagingEnabled={true}
+        showsVerticalScrollIndicator={false}
+      >
+        <ScrollSpacerView width={width} height={height} />
+        <Animated.View
+          style={{
+            width: width.__getValue(),
+            height: height.__getValue(),
+            flexDirection: "row",
+            alignItems: "center",
+            opacity: transitionProgress.interpolate({
+              inputRange: [0.998, 0.999],
+              outputRange: [0, 1]
+            })
+          }}
         >
-          <ScrollSpacerView width={width} height={height} />
-          <Animated.View
-            style={{
-              width: width.__getValue(),
-              height: height.__getValue(),
-              flexDirection: "row",
-              alignItems: "center",
-              opacity: transitionProgress.interpolate({
-                inputRange: [0.998, 0.999],
-                outputRange: [0, 1]
-              })
+          {
+            renderPageHeader &&
+            <Header
+              renderPageHeader={renderPageHeader}
+              images={images}
+              galleryIndex={galleryIndex}
+              onClose={onClose}
+            />
+          }
+          <GallerySwiper
+            style={{ flex: 1, backgroundColor: "transparent" }}
+            images={this.props.images}
+            initialPage={this.props.galleryInitialIndex}
+            errorComponent={this.props.errorPageComponent}
+            flatListProps={this.props.pagesFlatListProps}
+            sensitivePageScroll={this.props.sensitivePageScroll}
+            pageMargin={this.props.pageMargin}
+            onPageScrollStateChanged={this.props.onPageScrollStateChanged}
+            onPageScroll={this.props.onPageScroll}
+            scrollViewStyle={this.props.pageScrollViewStyle}
+            onSingleTapConfirmed={this.props.onPageSingleTapConfirmed}
+            onLongPress={this.props.onPageLongPress}
+            openImageMeasurements={openImageMeasurements}
+            imageComponent={(imageProps, imageDimensions, index) => {
+              if (!this.props.imagePageComponent) {
+                return <Image {...imageProps} />;
+              } else {
+                return this.props.imagePageComponent(imageProps, imageDimensions, index);
+              }
             }}
-          >
-            <Animated.View
-              resizeMode="contain"
-              style={{
-                width: width.__getValue(),
-                height: height.__getValue(),
-                opacity: transitionProgress.interpolate({
-                  inputRange: [0.998, 0.999],
-                  outputRange: [0, 1]
-                })
-              }}
-            >
-              {
-                renderPageHeader &&
-                <Header
-                  renderPageHeader={renderPageHeader}
-                  images={images}
-                  galleryIndex={galleryIndex}
-                  onClose={onClose}
-                />
-              }
-              <GallerySwiper
-                style={{ flex: 1, backgroundColor: "transparent" }}
-                images={this.props.images}
-                initialPage={this.props.galleryInitialIndex}
-                errorComponent={this.props.errorPageComponent}
-                flatListProps={this.props.pagesFlatListProps}
-                sensitivePageScroll={this.props.sensitivePageScroll}
-                pageMargin={this.props.pageMargin}
-                onPageScrollStateChanged={this.props.onPageScrollStateChanged}
-                onPageScroll={this.props.onPageScroll}
-                scrollViewStyle={this.props.pageScrollViewStyle}
-                onSingleTapConfirmed={this.props.onPageSingleTapConfirmed}
-                onLongPress={this.props.onPageLongPress}
-                openImageMeasurements={openImageMeasurements}
-                imageComponent={(imageProps, imageDimensions, index) => {
-                  if (!this.props.imagePageComponent) {
-                    return <Image {...imageProps} />;
-                  } else {
-                    return this.props.imagePageComponent(imageProps, imageDimensions, index);
+            onPageSelected={(index) => {
+              this.props.onChangePhoto(this.props.images[index].id, index);
+              if (index !== this.props.galleryInitialIndex) {
+                this.setState(
+                  {
+                    initialImageMeasurements: null,
+                    openImageMeasurements: null
                   }
-                }}
-                onPageSelected={(index) => {
-                  this.props.onChangePhoto(this.props.images[index].id, index);
-                  if (index !== this.props.galleryInitialIndex) {
-                    this.setState(
-                      {
-                        initialImageMeasurements: null,
-                        openImageMeasurements: null
-                      }
-                    );
-                  }
-                  this.props.onPageSelected &&
-                    this.props.onPageSelected(index);
-                }}
-              />
-              {
-                renderPageFooter &&
-                <Footer
-                  renderPageFooter={renderPageFooter}
-                  images={images}
-                  galleryIndex={galleryIndex}
-                  onClose={onClose}
-                />
+                );
               }
-            </Animated.View>
-          </Animated.View>
-          <ScrollSpacerView width={width} height={height} />
-        </Animated.ScrollView>
-      );
-    }
+              this.props.onPageSelected &&
+                this.props.onPageSelected(index);
+            }}
+          />
+          {
+            renderPageFooter &&
+            <Footer
+              renderPageFooter={renderPageFooter}
+              images={images}
+              galleryIndex={galleryIndex}
+              onClose={onClose}
+            />
+          }
+        </Animated.View>
+        <ScrollSpacerView width={width} height={height} />
+      </Animated.ScrollView>
+    );
+  }
+
+  _renderAndroidVerticalView(
+    width: Animated.Value,
+    height: Animated.Value,
+    transitionProgress: any
+  ) {
+    const { renderPageHeader, renderPageFooter, images, galleryIndex, onClose } = this.props;
     return (
       <Animated.View
         style={{
@@ -321,7 +275,7 @@ export default class ImageViewer extends React.Component {
           />
         }
         <GallerySwiper
-          style={{ flex: 1, backgroundColor: "transparent" }}
+          style={{ flex: 1, backgroundColor: "black" }}
           images={this.props.images}
           initialPage={this.props.galleryInitialIndex}
           errorComponent={this.props.errorPageComponent}
@@ -377,47 +331,51 @@ export default class ImageViewer extends React.Component {
     } = this.state;
     const imageSource = this.props.images[this.props.galleryIndex];
     const transitionProgress: any = this._getTransitionProgress();
-    return (
-      <Animated.View
-        style={styles.topContainer}
-        onLayout={Animated.event([
-          { nativeEvent: { layout: { width, height } } }
-        ])}
-      >
+    if (Platform.OS === "ios") {
+      return (
         <Animated.View
-          style={[styles.topContainer, { opacity: openProgress || 1 }]}
+          style={styles.topContainer}
+          onLayout={Animated.event([
+            { nativeEvent: { layout: { width, height } } }
+          ])}
         >
-          <ViewerBackground
-            opacityProgress={this.state.dismissScrollProgress}
-            inputRange={[0, height.__getValue(), height.__getValue() * 2]}
-            outputRange={[0.02, 1, 0.02]}
-          />
-          {this._renderVerticalScrollView(
-            width,
-            height,
-            imageSource,
-            openImageMeasurements,
-            openProgress,
-            transitionProgress
-          )}
-        </Animated.View>
-        {Platform.OS === "ios" &&
-          initialImageMeasurements &&
-          openImageMeasurements &&
-          (
-            <ImageTransitionView
-              source={{ uri: imageSource && imageSource.uri }}
-              transitionProgress={transitionProgress}
-              dismissScrollProgress={this.state.dismissScrollProgress}
-              initialImageMeasurements={initialImageMeasurements}
-              openImageMeasurements={openImageMeasurements}
-              imageWidth={imageSource.width}
-              imageHeight={imageSource.height}
-              width={width.__getValue()}
-              height={height.__getValue()}
+          <Animated.View
+            style={[styles.topContainer, { opacity: openProgress || 1 }]}
+          >
+            <ViewerBackground
+              opacityProgress={this.state.dismissScrollProgress}
+              inputRange={[0, height.__getValue(), height.__getValue() * 2]}
+              outputRange={[0.02, 1, 0.02]}
             />
-          )}
-      </Animated.View>
+            {this._renderIOSVerticalScrollView(
+              width,
+              height,
+              openImageMeasurements,
+              transitionProgress
+            )}
+          </Animated.View>
+          {initialImageMeasurements &&
+            openImageMeasurements &&
+            (
+              <ImageTransitionView
+                source={{ uri: imageSource && imageSource.uri }}
+                transitionProgress={transitionProgress}
+                dismissScrollProgress={this.state.dismissScrollProgress}
+                initialImageMeasurements={initialImageMeasurements}
+                openImageMeasurements={openImageMeasurements}
+                imageWidth={imageSource.width}
+                imageHeight={imageSource.height}
+                width={width.__getValue()}
+                height={height.__getValue()}
+              />
+            )}
+        </Animated.View>
+      );
+    }
+    return this._renderAndroidVerticalView(
+      width,
+      height,
+      transitionProgress
     );
   }
 }

@@ -13,7 +13,7 @@ import PropTypes from "prop-types";
 
 import ImageCell from "./ImageCell";
 
-export default class CameraRollBrowser extends React.Component {
+export default class CameraRollBrowser extends React.PureComponent {
   static propTypes = {
     images: PropTypes.arrayOf(PropTypes.object).isRequired,
     imagesPerRow: PropTypes.number,
@@ -49,7 +49,6 @@ export default class CameraRollBrowser extends React.Component {
     openImageViewer: PropTypes.func.isRequired,
 		displayImageViewer: PropTypes.bool.isRequired,
 		displayedImageId: PropTypes.string,
-		findMediaIndex: PropTypes.func.isRequired,
 		setMediaData: PropTypes.func.isRequired,
   }
 
@@ -123,9 +122,14 @@ export default class CameraRollBrowser extends React.Component {
       var extractedData = assets.map((asset) => {
         return {
           id: Math.random().toString(36).substr(2, 9),
-          type: asset.node.type,
-          group_name: asset.node.group_name,
-          timestamp: asset.node.timestamp,
+          source: {
+            uri: asset.node.image.uri
+          },
+          dimensions: {
+            width: asset.node.image.width,
+            height: asset.node.image.height
+          },
+          ...asset.node,
           ...asset.node.image
         };
       });
@@ -203,8 +207,7 @@ export default class CameraRollBrowser extends React.Component {
       imageContainerStyle,
       renderIndividualHeader,
       renderIndividualFooter,
-      openImageViewer,
-      findMediaIndex
+      openImageViewer
     } = this.props;
 
     return (
@@ -227,7 +230,6 @@ export default class CameraRollBrowser extends React.Component {
         renderIndividualFooter={renderIndividualFooter}
 
         onPressImage={openImageViewer}
-        findMediaIndex={findMediaIndex}
       />
     );
   }

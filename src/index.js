@@ -11,7 +11,7 @@ import {
 import CameraRollBrowser from "./CameraRollBrowser";
 import ImageViewer from "./ImageViewer";
 
-export default class CameraRollGallery extends React.Component {
+export default class CameraRollGallery extends React.PureComponent {
   _imageMeasurers: { [imageId: string]: () => void }
   _imageSizeMeasurers: { [imageId: string]: () => void }
 
@@ -111,12 +111,6 @@ export default class CameraRollGallery extends React.Component {
     };
   }
 
-  _findMediaIndex = (uri) => {
-		return this.state.resolvedData.findIndex(
-			(data) => data.uri.toLowerCase() === uri.toLowerCase()
-		);
-  }
-
   _setMediaData = (data) => {
     this.setState({ resolvedData: data });
   }
@@ -162,7 +156,6 @@ export default class CameraRollGallery extends React.Component {
           openImageViewer={this.openImageViewer}
           displayImageViewer={this.state.displayImageViewer}
           displayedImageId={this.state.imageId}
-          findMediaIndex={this._findMediaIndex}
           setMediaData={this._setMediaData}
         />
         {this.state.displayImageViewer &&
@@ -175,30 +168,30 @@ export default class CameraRollGallery extends React.Component {
                 transparent={true}
                 animationType={Platform.OS === "ios" ? "none" : "fade"}
                 onRequestClose={this.closeImageViewer}>
-                <ImageViewer
-                  images={this.state.resolvedData}
-                  imageId={this.state.imageId}
-                  galleryInitialIndex={this.state.galleryInitialIndex}
-                  galleryIndex={this.state.galleryIndex}
-                  onClose={this.closeImageViewer}
-                  onChangePhoto={this.onChangePhoto}
-                  getSourceContext={this._getSourceContext}
-                  displayImageViewer={this.state.displayImageViewer}
+                  <ImageViewer
+                    images={this.state.resolvedData}
+                    imageId={this.state.imageId}
+                    galleryInitialIndex={this.state.galleryInitialIndex}
+                    galleryIndex={this.state.galleryIndex}
+                    onClose={this.closeImageViewer}
+                    onChangePhoto={this.onChangePhoto}
+                    getSourceContext={this._getSourceContext}
+                    displayImageViewer={this.state.displayImageViewer}
 
-                  imagePageComponent={this.props.imagePageComponent}
-                  errorPageComponent={this.props.errorPageComponent}
-                  pagesFlatListProps={this.props.pagesFlatListProps}
-                  pageMargin={this.props.pageMargin}
-                  sensitivePageScroll={this.props.sensitivePageScroll}
-                  onPageSelected={this.props.onPageSelected}
-                  onPageScrollStateChanged={this.props.onPageScrollStateChanged}
-                  onPageScroll={this.props.onPageScroll}
-                  pageScrollViewStyle={this.props.pageScrollViewStyle}
-                  onPageSingleTapConfirmed={this.props.onPageSingleTapConfirmed}
-                  onPageLongPress={this.props.onPageLongPress}
-                  renderPageHeader={this.props.renderPageHeader}
-                  renderPageFooter={this.props.renderPageFooter}
-                />
+                    imagePageComponent={this.props.imagePageComponent}
+                    errorPageComponent={this.props.errorPageComponent}
+                    pagesFlatListProps={this.props.pagesFlatListProps}
+                    pageMargin={this.props.pageMargin}
+                    sensitivePageScroll={this.props.sensitivePageScroll}
+                    onPageSelected={this.props.onPageSelected}
+                    onPageScrollStateChanged={this.props.onPageScrollStateChanged}
+                    onPageScroll={this.props.onPageScroll}
+                    pageScrollViewStyle={this.props.pageScrollViewStyle}
+                    onPageSingleTapConfirmed={this.props.onPageSingleTapConfirmed}
+                    onPageLongPress={this.props.onPageLongPress}
+                    renderPageHeader={this.props.renderPageHeader}
+                    renderPageFooter={this.props.renderPageFooter}
+                  />
               </Modal>
             </SafeAreaView>
           )}

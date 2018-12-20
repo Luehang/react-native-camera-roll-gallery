@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import PropTypes from "prop-types";
 
-export default class ImageCell extends React.Component {
+export default class ImageCell extends React.PureComponent {
 	_imageRef;
 	_readyToMeasure;
 
@@ -26,8 +26,7 @@ export default class ImageCell extends React.Component {
 		renderIndividualHeader: PropTypes.func,
 		renderIndividualFooter: PropTypes.func,
 
-		onPressImage: PropTypes.func.isRequired,
-		findMediaIndex: PropTypes.func.isRequired,
+		onPressImage: PropTypes.func.isRequired
 	}
 
 	static contextTypes = {
@@ -57,16 +56,6 @@ export default class ImageCell extends React.Component {
 			this.measurePhoto,
 			this.measureImageSize
 		);
-	}
-
-	shouldComponentUpdate(nextProps, nextState) {
-		if (
-			this.props.shouldHideDisplayedImage !== nextProps.shouldHideDisplayedImage ||
-			this.state.imageLoaded !== nextState.imageLoaded
-		) {
-			return true;
-		}
-		return false;
 	}
 
 	componentDidUpdate(prevProps, prevState) {
@@ -125,8 +114,7 @@ export default class ImageCell extends React.Component {
 	_onPressImage = async (uri) => {
 		// Wait for the image to load before reacting to press events
 		if (this.state.imageLoaded) {
-			const index = await this.props.findMediaIndex(uri);
-			this.props.onPressImage(this.props.imageId, index);
+			this.props.onPressImage(this.props.imageId, this.props.index);
 		}
 	}
 
@@ -134,14 +122,12 @@ export default class ImageCell extends React.Component {
 		const {
 			data, index, imageId, source, imageMargin, imagesPerRow,
 			imageContainerStyle, renderIndividualHeader,
-			renderIndividualFooter, findMediaIndex
+			renderIndividualFooter
 		} = this.props;
-		const header = (renderIndividualHeader)
-			? renderIndividualHeader(data, findMediaIndex(data.uri))
-			: null;
-		const footer = (renderIndividualFooter)
-			? renderIndividualFooter(data, findMediaIndex(data.uri))
-			: null;
+		const header = (renderIndividualHeader) &&
+			renderIndividualHeader(data, index);
+		const footer = (renderIndividualFooter) &&
+			renderIndividualFooter(data, index);
 		return (
 			<TouchableOpacity
 				key={imageId}

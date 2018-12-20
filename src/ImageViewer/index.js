@@ -99,9 +99,7 @@ export default class ImageViewer extends React.Component {
       dismissProgress: null,
       dismissScrollProgress: new Animated.Value(Dimensions.get("window").height),
       initialImageMeasurements: null,
-      openImageMeasurements: null,
-      imageWidth: 0,
-      imageHeight: 0,
+      openImageMeasurements: null
     };
   }
 
@@ -154,19 +152,10 @@ export default class ImageViewer extends React.Component {
     const { measurer, imageSizeMeasurer } = this.props.getSourceContext(
       this.props.imageId
     );
-    // Measure opened photo size
-    const image = this.props.images.find(
-      (img) => img.id === this.props.imageId
-    );
-    if (!image) {
-      throw new Error(
-        `Fatal error, impossible to find image with id: ${this.props.imageId}`
-      );
-    }
-    const imageSize = {
-      width: image.width,
-      height: image.height
-    };
+    const imageSize: {
+      width: number,
+      height: number
+    } = await imageSizeMeasurer();
     const imageAspectRatio: number = imageSize.width / imageSize.height;
     const height: number = this.state.height.__getValue();
     const width: number = this.state.width.__getValue();
@@ -190,9 +179,7 @@ export default class ImageViewer extends React.Component {
     const initialImageMeasurements: ImageMeasurements = await measurer();
     this.setState({
       initialImageMeasurements,
-      openImageMeasurements,
-      imageHeight: imageSize.height,
-      imageWidth: imageSize.width
+      openImageMeasurements
     });
   }
 
@@ -292,7 +279,7 @@ export default class ImageViewer extends React.Component {
                 onSingleTapConfirmed={this.props.onPageSingleTapConfirmed}
                 onLongPress={this.props.onPageLongPress}
                 openImageMeasurements={openImageMeasurements}
-                imageComponent={(imageProps, imageDimensions) => {
+                imageComponent={(imageProps, imageDimensions, index) => {
                   if (!this.props.imagePageComponent) {
                     return (
                       <Image
@@ -418,8 +405,6 @@ export default class ImageViewer extends React.Component {
     const {
       width,
       height,
-      imageWidth,
-      imageHeight,
       openProgress,
       openImageMeasurements,
       initialImageMeasurements
@@ -461,8 +446,8 @@ export default class ImageViewer extends React.Component {
               dismissScrollProgress={this.state.dismissScrollProgress}
               initialImageMeasurements={initialImageMeasurements}
               openImageMeasurements={openImageMeasurements}
-              imageWidth={imageWidth}
-              imageHeight={imageHeight}
+              imageWidth={imageSource.width}
+              imageHeight={imageSource.height}
               width={width.__getValue()}
               height={height.__getValue()}
             />

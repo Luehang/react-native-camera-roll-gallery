@@ -28,7 +28,7 @@ export default class ReactNativeCameraRollGalleryExample extends Component {
     );
   }
 
-  _renderPageHeader = (image, i, onClose) => {
+  _renderPageHeader = (item, i, onClose) => {
     return (
       <View style={[styles.statusBarTop, styles.header, styles.pageHeader]}>
         <TouchableWithoutFeedback onPress={() => {onClose();}}>
@@ -36,7 +36,9 @@ export default class ReactNativeCameraRollGalleryExample extends Component {
         </TouchableWithoutFeedback>
         <View style={{}}>
           <Text style={[styles.profilePrimary, styles.whiteText]}>Lue Hang</Text>
-          <Text style={[styles.profileSecondary, styles.whiteText]}>{image.filename}</Text>
+          <Text style={[styles.profileSecondary, styles.whiteText]}>
+            {platform === "ios" ? item.image.filename : item.image.uri}
+          </Text>
         </View>
       </View>
     );

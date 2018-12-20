@@ -46,7 +46,7 @@ $ yarn add react-native-camera-roll-gallery
 
 **No further installation is required for Android.**
 
-**THIS IS A REACT NATIVE REQUIREMENT.**
+**THIS IS A REACT NATIVE AND iOS REQUIREMENT.**
 
 1. `react-native-camera-roll-gallery` uses React Native's [`CameraRoll`](https://facebook.github.io/react-native/docs/cameraroll) API. It requires the `RCTCameraRoll` library to be linked. Learn more about [Linking Libraries (iOS) clicking here](https://facebook.github.io/react-native/docs/linking-libraries-ios) or read for further instructions.
 

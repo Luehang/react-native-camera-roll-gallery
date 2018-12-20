@@ -8,7 +8,7 @@ import ImageTransitionView from "./ImageTransitionView";
 
 import type { ImageMeasurements } from "./Utils";
 
-class Footer extends React.Component {
+class Footer extends React.PureComponent {
   static propTypes = {
     renderPageFooter: PropTypes.func,
     images: PropTypes.array.isRequired,
@@ -16,18 +16,10 @@ class Footer extends React.Component {
     onClose: PropTypes.func.isRequired
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-		if (this.props.galleryIndex !== nextProps.galleryIndex) {
-			return true;
-    }
-		return false;
-  }
-
   render() {
     const { renderPageFooter, images, galleryIndex, onClose } = this.props;
-    const footer = renderPageFooter
-      ? renderPageFooter(images[galleryIndex], galleryIndex, onClose)
-      : undefined;
+    const footer = renderPageFooter &&
+      renderPageFooter(images[galleryIndex], galleryIndex, onClose);
     return (
       <View style={{ bottom: 0, width: "100%", position: "absolute", zIndex: 1000 }}>
         { footer }
@@ -36,7 +28,7 @@ class Footer extends React.Component {
   }
 }
 
-class Header extends React.Component {
+class Header extends React.PureComponent {
   static propTypes = {
     renderPageHeader: PropTypes.func,
     images: PropTypes.array.isRequired,
@@ -44,18 +36,10 @@ class Header extends React.Component {
     onClose: PropTypes.func.isRequired
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-		if (this.props.galleryIndex !== nextProps.galleryIndex) {
-			return true;
-    }
-		return false;
-  }
-
   render() {
     const { renderPageHeader, images, galleryIndex, onClose } = this.props;
-    const header = this.props.renderPageHeader
-      ? renderPageHeader(images[galleryIndex], galleryIndex, onClose)
-      : undefined;
+    const header = this.props.renderPageHeader &&
+      renderPageHeader(images[galleryIndex], galleryIndex, onClose);
     return (
       <View style={{ top: 0, width: "100%", position: "absolute", zIndex: 1000 }}>
         { header }
@@ -255,12 +239,15 @@ export default class ImageViewer extends React.Component {
                 })
               }}
             >
-              <Header
-                renderPageHeader={renderPageHeader}
-                images={images}
-                galleryIndex={galleryIndex}
-                onClose={onClose}
-              />
+              {
+                renderPageHeader &&
+                <Header
+                  renderPageHeader={renderPageHeader}
+                  images={images}
+                  galleryIndex={galleryIndex}
+                  onClose={onClose}
+                />
+              }
               <GallerySwiper
                 style={{ flex: 1, backgroundColor: "transparent" }}
                 images={this.props.images}
@@ -269,11 +256,7 @@ export default class ImageViewer extends React.Component {
                 flatListProps={this.props.pagesFlatListProps}
                 sensitivePageScroll={this.props.sensitivePageScroll}
                 pageMargin={this.props.pageMargin}
-                onPageScrollStateChanged={(state) => {
-                  this.props.onPageScrollStateChanged
-                    ? this.props.onPageScrollStateChanged(state)
-                    : undefined;
-                }}
+                onPageScrollStateChanged={this.props.onPageScrollStateChanged}
                 onPageScroll={this.props.onPageScroll}
                 scrollViewStyle={this.props.pageScrollViewStyle}
                 onSingleTapConfirmed={this.props.onPageSingleTapConfirmed}
@@ -300,12 +283,15 @@ export default class ImageViewer extends React.Component {
                     this.props.onPageSelected(index);
                 }}
               />
-              <Footer
-                renderPageFooter={renderPageFooter}
-                images={images}
-                galleryIndex={galleryIndex}
-                onClose={onClose}
-              />
+              {
+                renderPageFooter &&
+                <Footer
+                  renderPageFooter={renderPageFooter}
+                  images={images}
+                  galleryIndex={galleryIndex}
+                  onClose={onClose}
+                />
+              }
             </Animated.View>
           </Animated.View>
           <ScrollSpacerView width={width} height={height} />
@@ -325,64 +311,58 @@ export default class ImageViewer extends React.Component {
           })
         }}
       >
-        <Animated.View
-          resizeMode="contain"
-          style={{
-            width: width.__getValue(),
-            height: height.__getValue(),
-            opacity: transitionProgress.interpolate({
-              inputRange: [0.998, 0.999],
-              outputRange: [0, 1]
-            })
-          }}
-        >
+        {
+          renderPageHeader &&
           <Header
             renderPageHeader={renderPageHeader}
             images={images}
             galleryIndex={galleryIndex}
             onClose={onClose}
           />
-          <GallerySwiper
-            style={{ flex: 1, backgroundColor: "transparent" }}
-            images={this.props.images}
-            initialPage={this.props.galleryInitialIndex}
-            errorComponent={this.props.errorPageComponent}
-            flatListProps={this.props.pagesFlatListProps}
-            pageMargin={this.props.pageMargin}
-            sensitivePageScroll={this.props.sensitivePageScroll}
-            onPageScrollStateChanged={this.props.onPageScrollStateChanged}
-            onPageScroll={this.props.onPageScroll}
-            scrollViewStyle={this.props.pageScrollViewStyle}
-            onSingleTapConfirmed={this.props.onPageSingleTapConfirmed}
-            onLongPress={this.props.onPageLongPress}
-            imageComponent={(imageProps, imageDimensions, index) => {
-              if (!this.props.imagePageComponent) {
-                return <Image {...imageProps} />;
-              } else {
-                return this.props.imagePageComponent(imageProps, imageDimensions, index);
-              }
-            }}
-            onPageSelected={(index) => {
-              this.props.onChangePhoto(this.props.images[index].id, index);
-              if (index !== this.props.galleryInitialIndex) {
-                this.setState(
-                  {
-                    initialImageMeasurements: null,
-                    openImageMeasurements: null
-                  }
-                );
-              }
-              this.props.onPageSelected &&
-                this.props.onPageSelected(index);
-            }}
-          />
+        }
+        <GallerySwiper
+          style={{ flex: 1, backgroundColor: "transparent" }}
+          images={this.props.images}
+          initialPage={this.props.galleryInitialIndex}
+          errorComponent={this.props.errorPageComponent}
+          flatListProps={this.props.pagesFlatListProps}
+          pageMargin={this.props.pageMargin}
+          sensitivePageScroll={this.props.sensitivePageScroll}
+          onPageScrollStateChanged={this.props.onPageScrollStateChanged}
+          onPageScroll={this.props.onPageScroll}
+          scrollViewStyle={this.props.pageScrollViewStyle}
+          onSingleTapConfirmed={this.props.onPageSingleTapConfirmed}
+          onLongPress={this.props.onPageLongPress}
+          imageComponent={(imageProps, imageDimensions, index) => {
+            if (!this.props.imagePageComponent) {
+              return <Image {...imageProps} />;
+            } else {
+              return this.props.imagePageComponent(imageProps, imageDimensions, index);
+            }
+          }}
+          onPageSelected={(index) => {
+            this.props.onChangePhoto(this.props.images[index].id, index);
+            if (index !== this.props.galleryInitialIndex) {
+              this.setState(
+                {
+                  initialImageMeasurements: null,
+                  openImageMeasurements: null
+                }
+              );
+            }
+            this.props.onPageSelected &&
+              this.props.onPageSelected(index);
+          }}
+        />
+        {
+          renderPageFooter &&
           <Footer
             renderPageFooter={renderPageFooter}
             images={images}
             galleryIndex={galleryIndex}
             onClose={onClose}
           />
-        </Animated.View>
+        }
       </Animated.View>
     );
   }
@@ -395,9 +375,7 @@ export default class ImageViewer extends React.Component {
       openImageMeasurements,
       initialImageMeasurements
     } = this.state;
-    const imageSource: ?ImageSource = this.props.images.find(
-      (img: ImageSource) => img.id === this.props.imageId
-    );
+    const imageSource = this.props.images[this.props.galleryIndex];
     const transitionProgress: any = this._getTransitionProgress();
     return (
       <Animated.View
@@ -423,7 +401,8 @@ export default class ImageViewer extends React.Component {
             transitionProgress
           )}
         </Animated.View>
-        {initialImageMeasurements &&
+        {Platform.OS === "ios" &&
+          initialImageMeasurements &&
           openImageMeasurements &&
           (
             <ImageTransitionView

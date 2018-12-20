@@ -164,11 +164,11 @@ render() {
 | `emptyTextStyle`              | Styles to apply to the `emptyText`. | `Object` | {textAlign: "center"} |
 | `loader`                      | Camera Roll loader component node. | `React.Component` | `<ActivityIndicator />` |
 | `cameraRollFlatListProps`     | Props to be passed to the underlying `FlatList` Camera Roll layout.  See [`FlatList props...`](https://facebook.github.io/react-native/docs/flatlist#props) | `Object` | |
-| `cameraRollListHeader`        | Custom function to render the Camera Roll list header.  This function must return a React Component. | `Function` | |
-| `cameraRollListFooter`        | Custom function to render the Camera Roll list footer.  This function must return a React Component. | `Function` | |
+| `cameraRollListHeader`        | Custom function to render the Camera Roll list header.  `() => React.Element` | `Function` | |
+| `cameraRollListFooter`        | Custom function to render the Camera Roll list footer.  `() => React.Element` | `Function` | |
 | `imageContainerStyle`         | The styles object which is added to the Image component. | `Object` | {} |
-| `renderIndividualHeader`      | Custom function that is executed **ABOVE** each individual image.  First param is the individual data and second param is the index.  This function must return a React Component. | `Function` | |
-| `renderIndividualFooter`      | Custom function that is executed **BELOW** each individual image.  First param is the individual data and second param is the index.  This function must return a React Component. | `Function` | |
+| `renderIndividualHeader`      | Custom function that is executed **ABOVE** each individual image.  `(item: Object, index: number, onClose: Function) => ?React.Element` | `Function` | |
+| `renderIndividualFooter`      | Custom function that is executed **BELOW** each individual image.  `(item: Object, index: number, onClose: Function) => ?React.Element` | `Function` | |
 
 <a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH BLOG"/></a>
 
@@ -176,19 +176,19 @@ render() {
 
 | Props                         | Description                                                                                                                                                                                    | Type              | Default |
 |-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|
-| `imagePageComponent`          | Custom function to render the images for gallery.  First param is the image props and second param is the dimensions. | `Function` | `<Image/>` component |
+| `imagePageComponent`          | Custom function to render the images for gallery.  First param is the image props and second param is the dimensions. `(imageProps: { imageLoaded: Boolean, source: object, image: object, style: Array<object>, resizeMode: string, capInsets: object, onLoadStart: Function, onLoad: Function, ...extras }, imageDimensions: {width: number, height: number}, index: number) => React.Element` **index params included in Version ^1.3.0 update** | `Function` | `<Image/>` component |
 | `errorPageComponent`          | Custom function to render the page of an image in gallery that couldn't be displayed. | `Function` | `<View/>` with stylized error |
-| `renderPageHeader`            | Custom function to render gallery page header and must return a React Component.  First param is the individual data and second param is the index.  Third param is the onClose function to close gallery pages and return to the masonry layout. | `Function` | |
-| `renderPageFooter`            | Custom function to render gallery page footer and must return a React Component.  First param is the individual data and second param is the index.  Third param is the onClose function to close gallery pages and return to the masonry layout. | `Function` | |
+| `renderPageHeader`            | Custom function to render gallery page header and must return a React Component.  `(item: Object, index: number, onClose: Function) => ?React.Element` The `onClose` function is use to close gallery pages and return to the camera roll layout. | `Function` | |
+| `renderPageFooter`            | Custom function to render gallery page footer and must return a React Component.  `(item: Object, index: number, onClose: Function) => ?React.Element` The `onClose` function is use to close gallery pages and return to the camera roll layout. | `Function` | |
 | `pagesFlatListProps`          | Props to be passed to the underlying `FlatList` gallery.  See [`FlatList` props...](https://facebook.github.io/react-native/docs/flatlist) | `Object` | {windowSize: 3} |
 | `pageMargin`                  | Blank space to show between images in gallery. | `number` | 0 |
 | `sensitivePageScroll`         | Whether to enable an intelligent detection to detect rough and fast swiping gestures in order to "cushion" or slow down a swipe at the end. **Version ^1.2.0 update**. | `Boolean` | `false` |
-| `onPageSelected`              | Fired with the index of page that has been selected in gallery. | `Function` | |
-| `onPageScrollStateChanged`    | Called when page scrolling state has changed in gallery.  See [scroll state and events...](#scroll-state-and-events) | `Function` | |
-| `onPageScroll`                | Scroll event for page gallery.  See [scroll state and events...](#scroll-state-and-events) | `Function` | |
+| `onPageSelected`              | Fired with the index of page that has been selected in gallery. `(index: number) => void` | `Function` | `Function` | |
+| `onPageScrollStateChanged`    | Called when page scrolling state has changed in gallery.  See [scroll state and events...](#scroll-state-and-events) `(state: string) => void` | `Function` | |
+| `onPageScroll`                | Scroll event for page gallery.  See [scroll state and events...](#scroll-state-and-events) `(event: { position: number, offset: number, fraction: number }) => void` | `Function` | |
 | `pageScrollViewStyle`         | Custom style for the `FlatList` component for gallery. | `Object` | {} |
-| `onPageSingleTapConfirmed`    | Fired after a single tap on page in gallery. | `Function` | |
-| `onPageLongPress`             | Fired after a long press on page in gallery. | `Function` | |
+| `onPageSingleTapConfirmed`    | Fired after a single tap on page in gallery. `() => void`  | `Function` | |
+| `onPageLongPress`             | Fired after a long press on page in gallery. `() => void` | `Function` | |
 
 <a href="https://luehangs.site"><img src="https://luehangs.site/images/lh-blog-strip.jpg" alt="LH BLOG"/></a>
 

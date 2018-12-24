@@ -119,8 +119,9 @@ export default class CameraRollBrowser extends React.PureComponent {
     }
 
     if (assets.length > 0) {
-      var extractedData = assets.map((asset) => {
+      var extractedData = assets.map((asset, index) => {
         return {
+          index: index,
           id: Math.random().toString(36).substr(2, 9),
           source: {
             uri: asset.node.image.uri

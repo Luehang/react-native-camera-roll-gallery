@@ -198,7 +198,7 @@ export default class ImageViewer extends React.PureComponent {
           }
           <GallerySwiper
             style={{ flex: 1, backgroundColor: "transparent" }}
-            images={this.props.images}
+            images={images}
             initialPage={this.props.galleryInitialIndex}
             errorComponent={this.props.errorPageComponent}
             flatListProps={this.props.pagesFlatListProps}
@@ -276,9 +276,10 @@ export default class ImageViewer extends React.PureComponent {
         }
         <GallerySwiper
           style={{ flex: 1, backgroundColor: "black" }}
-          images={this.props.images}
+          images={images}
           initialPage={this.props.galleryInitialIndex}
           errorComponent={this.props.errorPageComponent}
+          initialNumToRender={images.length + 1}
           flatListProps={this.props.pagesFlatListProps}
           pageMargin={this.props.pageMargin}
           sensitivePageScroll={this.props.sensitivePageScroll}
@@ -295,8 +296,8 @@ export default class ImageViewer extends React.PureComponent {
             }
           }}
           onPageSelected={(index) => {
-            this.props.onChangePhoto(this.props.images[index].id, index);
             if (index !== this.props.galleryInitialIndex) {
+              this.props.onChangePhoto(images[index].id, index);
               this.setState(
                 {
                   initialImageMeasurements: null,

@@ -104,10 +104,6 @@ export default class ImageCell extends React.PureComponent {
 	}
 
 	measureImageSize = () => {
-		if (!this.state.imageLoaded) {
-			/* eslint-disable no-console */
-			console.warn("measureImageSize: Undefined image size");
-		}
 		return { width: this.props.data.width, height: this.props.data.height };
 	}
 

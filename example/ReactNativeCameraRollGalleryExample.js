@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   Platform,
   Dimensions,
@@ -16,7 +16,7 @@ const platform = Platform.OS;
 
 const backIcon = require("./assets/arrow_back_ios_white_36dp.png");
 
-export default class ReactNativeCameraRollGalleryExample extends Component {
+export default class ReactNativeCameraRollGalleryExample extends React.PureComponent {
   _renderHeaderComponent = () => {
     return (
       <View style={{backgroundColor: "#368FFA"}}>
@@ -37,7 +37,7 @@ export default class ReactNativeCameraRollGalleryExample extends Component {
         <View style={{}}>
           <Text style={[styles.profilePrimary, styles.whiteText]}>Lue Hang</Text>
           <Text style={[styles.profileSecondary, styles.whiteText]}>
-            {platform === "ios" ? item.image.filename : item.image.uri}
+            {platform === "ios" ? i + ":  " + item.image.filename : i + ":  " + item.image.uri}
           </Text>
         </View>
       </View>

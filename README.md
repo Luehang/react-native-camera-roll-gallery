@@ -18,7 +18,7 @@ photos (next update will have videos) and displayed on a custom interactive imag
 
 ![react-native-camera-roll-gallery](https://luehangs.site/videos/react-native-camera-roll-gallery-demo.gif)
 
-Learn more about React Native with project examples along with Cyber Security and Ethical Hacking at [LH LABS](https://www.luehangs.site).
+#### :information_source: Learn more about React Native with project examples along with Cyber Security and Ethical Hacking at [LH LABS](https://www.luehangs.site).
 
 Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-native-gallery-swiper).
 
@@ -31,18 +31,18 @@ Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-nativ
 <br/>
 <br/>
 
-## Index
+# Index
 
-- [Getting Started](#getting-started)
-- [Manual Installation](#manual-installation)
-- [Usage Example](#usage-example)
-- [API](#api)
-- [Props](#props)
-- [Scroll State and Events](#scroll-state-and-events)
-- [Example Project](#example-project)
-- [Author](#author)
-- [Contribute](#contribute)
-- [License](#license)
+### 1.  [Getting Started](#large_blue_diamond-getting-started)
+### 2.  [Manual Installation (Only iOS)](#large_blue_diamond-manual-installation)
+### 3.  [Usage Example](#large_blue_diamond-usage-example)
+### 4.  [API](#large_blue_diamond-api)
+### 5.  [Props](#large_blue_diamond-props)
+### 6.  [Scroll State and Events](#large_blue_diamond-scroll-state-and-events)
+### 7.  [Example Project](#large_blue_diamond-example-project)
+### 8.  [Author](#large_blue_diamond-author)
+### 9.  [Contribute](#large_blue_diamond-contribute)
+### 10.  [License](#large_blue_diamond-license)
 
 <br/>
 <br/>
@@ -53,7 +53,7 @@ Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-nativ
 <br/>
 <br/>
 
-## Getting Started
+## :large_blue_diamond: Getting Started
 
 Type in the following to the command line to install the dependency.
 
@@ -67,7 +67,7 @@ or
 $ yarn add react-native-camera-roll-gallery
 ```
 
-**No further installation is required for Android.**
+#### :information_source: **No further installation is required for Android.**
 
 <br/>
 <br/>
@@ -75,13 +75,13 @@ $ yarn add react-native-camera-roll-gallery
 <br/>
 <br/>
 
-### Manual Installation (iOS)
+## :large_blue_diamond: Manual Installation
 
-**No further installation is required for Android.**
+#### :information_source: **No further installation is required for Android.**
 
 <br/>
 
-**THIS IS A REACT NATIVE AND iOS REQUIREMENT.**
+#### :information_source: **THIS IS A REACT NATIVE AND iOS REQUIREMENT.**
 
 1. `react-native-camera-roll-gallery` uses React Native's [`CameraRoll`](https://facebook.github.io/react-native/docs/cameraroll) API. It requires the `RCTCameraRoll` library to be linked. Learn more about [Linking Libraries (iOS) clicking here](https://facebook.github.io/react-native/docs/linking-libraries-ios) or read for further instructions.
 
@@ -99,7 +99,9 @@ $ yarn add react-native-camera-roll-gallery
 
 <br/>
 
-**Important:** On devices running **iOS 10 or later**, user's permission is required to access the Camera Roll.  Add the `NSPhotoLibraryUsageDescription` key in your `Info.plist` with a string that describes how your app will use this data. This key will appear as `Privacy - Photo Library Usage Description` in **Xcode**.
+#### :information_source: **Important:** On devices running **iOS 10 or later**.
+
+ User's permission is required to access the Camera Roll.  Add the `NSPhotoLibraryUsageDescription` key in your `Info.plist` with a string that describes how your app will use this data. This key will appear as `Privacy - Photo Library Usage Description` in **Xcode**.
 
 ```xml
 <dict>
@@ -112,7 +114,9 @@ $ yarn add react-native-camera-roll-gallery
 
 <br/>
 
-**Optional:** On devices running **iOS 11 or later**, it is required to add the `NSPhotoLibraryAddUsageDescription` key in your `Info.plist`.  After that, define a string that describes how your app will use this data.  By adding this key to your `Info.plist`, you will be able to request write-only access permission from the user. If you try to save to the camera roll without this permission, your app will exit.
+#### :information_source: **Optional:** On devices running **iOS 11 or later**.
+
+It is required to add the `NSPhotoLibraryAddUsageDescription` key in your `Info.plist`.  After that, define a string that describes how your app will use this data.  By adding this key to your `Info.plist`, you will be able to request write-only access permission from the user. If you try to save to the camera roll without this permission, your app will exit.
 
 ```xml
 <dict>
@@ -129,7 +133,7 @@ $ yarn add react-native-camera-roll-gallery
 <br/>
 <br/>
 
-## Usage Example
+## :large_blue_diamond: Usage Example
 
 Add an ``import`` to the top of the file.
 
@@ -198,15 +202,15 @@ render() {
 <br/>
 <br/>
 
-## API
+## :large_blue_diamond: API
 
 ``<CameraRollGallery />`` component accepts the following props...
 
 <br/>
 
-## Props
+# :large_blue_diamond: Props
 
-### Camera Roll Layout Props of ``<CameraRollGallery />``
+### :small_blue_diamond: Camera Roll Layout Props of ``<CameraRollGallery />``
 
 | Props                         | Description                                                                                                                                                                                    | Type              | Default |
 |-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|
@@ -236,7 +240,7 @@ render() {
 
 <br/>
 
-### Gallery Props of ``<CameraRollGallery />``
+### :small_blue_diamond: Gallery Props of ``<CameraRollGallery />``
 
 | Props                         | Description                                                                                                                                                                                    | Type              | Default |
 |-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|
@@ -260,7 +264,7 @@ render() {
 <br/>
 <br/>
 
-## Scroll State and Events
+## :large_blue_diamond: Scroll State and Events
 
 Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-native-gallery-swiper).
 
@@ -289,7 +293,7 @@ Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-nativ
 <br/>
 <br/>
 
-## Example Project
+## :large_blue_diamond: Example Project
 
 Perform steps 1-2 to run locally:
 
@@ -298,7 +302,7 @@ Perform steps 1-2 to run locally:
 
 <br/>
 
-### 1. Clone the Repo
+### :small_blue_diamond: 1. Clone the Repo
 
 **Clone** `react-native-camera-roll-gallery` locally. In a terminal, run:
 
@@ -308,7 +312,7 @@ $ git clone https://github.com/Luehang/react-native-camera-roll-gallery.git reac
 
 <br/>
 
-### 2. Install and Run
+### :small_blue_diamond: 2. Install and Run
 
 ```bash
 $ cd react-native-camera-roll-gallery/example/
@@ -333,7 +337,7 @@ $ cd react-native-camera-roll-gallery/example/
 <br/>
 <br/>
 
-## Author
+## :large_blue_diamond: Author
 
 <a href="https://www.facebook.com/lue.hang">
 <img src="https://www.luehangs.site/images/lue-hang2018-circle-150px.png"/>
@@ -350,21 +354,21 @@ Free and made possible along with costly maintenance and updates by [Lue Hang](h
 <br/>
 <br/>
 
-## Contribute
+## :large_blue_diamond: Contribute
 
 [Pull requests](https://github.com/Luehang/react-native-camera-roll-gallery/pulls) are welcomed.
 
 <br/>
 
-### Beginners
+### :large_blue_diamond: Contributors
 
-Not sure where to start, or a beginner? Take a look at the [issues page](https://github.com/Luehang/react-native-camera-roll-gallery/issues).
+Contributors will be posted here.
 
 <br/>
 
-### Contributors
+### :small_blue_diamond: Beginners
 
-Contributors will be posted here.
+Not sure where to start, or a beginner? Take a look at the [issues page](https://github.com/Luehang/react-native-camera-roll-gallery/issues).
 
 <br/>
 <br/>
@@ -375,6 +379,6 @@ Contributors will be posted here.
 <br/>
 <br/>
 
-## License
+## :large_blue_diamond: License
 
 MIT © [Lue Hang](https://luehangs.site), as found in the LICENSE file.

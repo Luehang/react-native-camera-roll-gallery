@@ -49,7 +49,19 @@ export default class CameraRollBrowser extends React.PureComponent {
     openImageViewer: PropTypes.func.isRequired,
 		displayImageViewer: PropTypes.bool.isRequired,
 		displayedImageId: PropTypes.string,
-		setMediaData: PropTypes.func.isRequired,
+    setMediaData: PropTypes.func.isRequired,
+
+    loaderColor: PropTypes.string,
+    permissionDialogTitle: PropTypes.string,
+    permissionDialogMessage: PropTypes.string,
+    pendingAuthorizedView: PropTypes.oneOfType([
+      PropTypes.node,
+      // PropTypes.func
+    ]),
+    notAuthorizedView: PropTypes.oneOfType([
+      PropTypes.node,
+      // PropTypes.func
+    ]),
   }
 
   constructor(props) {
@@ -57,6 +69,7 @@ export default class CameraRollBrowser extends React.PureComponent {
 
     this.state = {
       lastCursor: null,
+      permissionGranted: Platform.OS === "ios" ? "granted" : "denied",
       initialLoading: true,
       loadingMore: false,
       noMore: false,
@@ -65,16 +78,31 @@ export default class CameraRollBrowser extends React.PureComponent {
 
   componentWillMount = async () => {
     if (Platform.OS === "android") {
-      await PermissionsAndroid.request(
+      const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
         {
-          "title": "Read Storage Permission",
-          "message": "Needs access to your photos " +
-            "so you can use these awesome services."
+          "title": this.props.permissionDialogTitle,
+          "message": this.props.permissionDialogMessage
         }
       );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        this.setState({
+          permissionGranted: "granted"
+        });
+        this.fetch();
+      } else if (granted === PermissionsAndroid.RESULTS.DENIED) {
+        this.setState({
+          permissionGranted: "denied"
+        });
+      } else if (granted === PermissionsAndroid.RESULTS.NEVER_ASK_AGAIN) {
+        this.setState({
+          permissionGranted: "never_ask_again"
+        });
+      }
     }
-    this.fetch();
+    if (Platform.OS === "ios") {
+      this.fetch();
+    }
   }
 
   fetch = () => {
@@ -152,12 +180,47 @@ export default class CameraRollBrowser extends React.PureComponent {
       emptyText,
       emptyTextStyle,
       loader,
+      loaderColor,
+      pendingAuthorizedView,
+      notAuthorizedView,
     } = this.props;
+
+    if (this.state.permissionGranted === "denied") {
+      return (
+        <FlatList
+          style={[styles.error, {backgroundColor}]}
+          ListHeaderComponent={this.props.cameraRollListHeader}
+          ListFooterComponent={this.props.cameraRollListFooter}
+          data={[{
+            customElement: pendingAuthorizedView,
+            text: "Waiting on access permission to camera roll.",
+          }]}
+          renderItem={this._renderError}
+          keyExtractor={(item, index) => item.id + index.toString()}
+        />
+      );
+    }
+
+    if (this.state.permissionGranted === "never_ask_again") {
+      return (
+        <FlatList
+          style={[styles.error, {backgroundColor}]}
+          ListHeaderComponent={this.props.cameraRollListHeader}
+          ListFooterComponent={this.props.cameraRollListFooter}
+          data={[{
+            customElement: notAuthorizedView,
+            text: "Access denied to camera roll.",
+          }]}
+          renderItem={this._renderError}
+          keyExtractor={(item, index) => item.id + index.toString()}
+        />
+      );
+    }
 
     if (this.state.initialLoading) {
       return (
         <View style={[styles.loader, {backgroundColor}]}>
-          { loader || <ActivityIndicator size="large" color="#e53935" style={styles.spinner} /> }
+            { loader || <ActivityIndicator size="large" color={loaderColor} style={styles.spinner} /> }
         </View>
       );
     }
@@ -178,15 +241,15 @@ export default class CameraRollBrowser extends React.PureComponent {
       />
     ) : (
       <FlatList
-        style={{flex: 1}}
+        style={[styles.error, {backgroundColor}]}
         ListHeaderComponent={this.props.cameraRollListHeader}
         ListFooterComponent={this.props.cameraRollListFooter}
         data={[{
-          emptyText,
-          emptyTextStyle
+          text: emptyText,
+          textStyle: emptyTextStyle,
         }]}
         renderItem={this._renderError}
-        keyExtractor={(item, index) => item.id + index.toString()}
+        keyExtractor={(item, index) => index.toString()}
       />
     );
 
@@ -236,8 +299,15 @@ export default class CameraRollBrowser extends React.PureComponent {
   }
 
   _renderError = ({ item }) => {
+    const {
+      customElement,
+      textStyle,
+      text,
+    } = item;
+
     return (
-      <Text style={[{textAlign: "center"}, item.emptyTextStyle]}>{item.emptyText}</Text>
+      customElement ||
+      <Text style={[{textAlign: "center"}, textStyle]}>{text}</Text>
     );
   }
 
@@ -258,4 +328,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  error: {
+    flexGrow: 1,
+  }
 });

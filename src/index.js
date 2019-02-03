@@ -45,6 +45,17 @@ export default class CameraRollGallery extends React.PureComponent {
     imageContainerStyle: PropTypes.object,
     renderIndividualHeader: PropTypes.func,
     renderIndividualFooter: PropTypes.func,
+    loaderColor: PropTypes.string,
+    permissionDialogTitle: PropTypes.string,
+    permissionDialogMessage: PropTypes.string,
+    pendingAuthorizedView: PropTypes.oneOfType([
+      PropTypes.node,
+      // PropTypes.func
+    ]),
+    notAuthorizedView: PropTypes.oneOfType([
+      PropTypes.node,
+      // PropTypes.func
+    ]),
 
     imagePageComponent: PropTypes.func,
     errorPageComponent: PropTypes.func,
@@ -70,8 +81,12 @@ export default class CameraRollGallery extends React.PureComponent {
     imageMargin: 5,
     backgroundColor: "white",
     emptyText: "No photos.",
+    loaderColor: "lightblue",
     imageContainerStyle: {},
-    sensitivePageScroll: false
+    sensitivePageScroll: false,
+    permissionDialogTitle: "Read Storage Permission",
+    permissionDialogMessage: "Needs access to your photos " +
+      "so you can use these awesome services.",
   }
 
   static childContextTypes = {
@@ -157,6 +172,12 @@ export default class CameraRollGallery extends React.PureComponent {
           displayImageViewer={this.state.displayImageViewer}
           displayedImageId={this.state.imageId}
           setMediaData={this._setMediaData}
+
+          loaderColor={this.props.loaderColor}
+          permissionDialogTitle={this.props.permissionDialogTitle}
+          permissionDialogMessage={this.props.permissionDialogMessage}
+          pendingAuthorizedView={this.props.pendingAuthorizedView}
+          notAuthorizedView={this.props.notAuthorizedView}
         />
         {this.state.displayImageViewer &&
           this.state.imageId &&

@@ -225,17 +225,17 @@ render() {
 | `emptyText`                   | Text to display instead of a list when there are no photos found. | `String` | "No photos." |
 | `emptyTextStyle`              | Styles to apply to the `emptyText`. | `Object` | {textAlign: "center"} |
 | `loader`                      | Camera Roll loader component node. | `React.Component` | `<ActivityIndicator />` |
-| `loaderColor`                 | The foreground color of the initial load spinner. | `"lightblue"` |
+| `loaderColor`                 | The foreground color of the initial load spinner. | `string` | `"lightblue"` |
 | `cameraRollFlatListProps`     | Props to be passed to the underlying `FlatList` Camera Roll layout.  See [`FlatList props...`](https://facebook.github.io/react-native/docs/flatlist#props) | `Object` | |
 | `cameraRollListHeader`        | Custom function to render the Camera Roll list header.  `() => React.Element` | `Function` | |
 | `cameraRollListFooter`        | Custom function to render the Camera Roll list footer.  `() => React.Element` | `Function` | |
 | `imageContainerStyle`         | The styles object which is added to the Image component. | `Object` | {} |
 | `renderIndividualHeader`      | Custom function that is executed **ABOVE** each individual image.  `(item: Object, index: number, onClose: Function) => ?React.Element` | `Function` | |
 | `renderIndividualFooter`      | Custom function that is executed **BELOW** each individual image.  `(item: Object, index: number, onClose: Function) => ?React.Element` | `Function` | |
-| `permissionDialogTitle` | Starting on android M individual permissions must be granted for certain services, having access to the camera roll is one of them, you can use this to change the title of the dialog prompt requesting permissions. | `"Read Storage Permission"` |
-| `permissionDialogMessage` | Starting on android M individual permissions must be granted for certain services, having access to the camera roll is one of them, you can use this to change the content of the dialog prompt requesting permissions. | `"Needs access to your photos so you can use these awesome services."` |
-| `pendingAuthorizedView` | Starting on android M individual permissions must be granted for certain services, having access to the camera roll is one of them. This will be displayed when access to the camera roll has been denied. | `Waiting on access permission to camera roll.` |
-| `notAuthorizedView` | Starting on android M individual permissions must be granted for certain services, having access to the camera roll is one of them. This will be displayed when access to the camera roll has been denied completely. | `Access denied to camera roll.` |
+| `permissionDialogTitle` | Starting on android M individual permissions must be granted for certain services, having access to the camera roll is one of them, you can use this to change the title of the dialog prompt requesting permissions. | `string` | `"Read Storage Permission"` |
+| `permissionDialogMessage` | Starting on android M individual permissions must be granted for certain services, having access to the camera roll is one of them, you can use this to change the content of the dialog prompt requesting permissions. | `string` | `"Needs access to your photos so you can use these awesome services."` |
+| `pendingAuthorizedView` | Starting on android M individual permissions must be granted for certain services, having access to the camera roll is one of them. This will be displayed when access to the camera roll has been denied. | `React.Element` | Defaults to `Waiting on access permission to camera roll.` message. |
+| `notAuthorizedView` | Starting on android M individual permissions must be granted for certain services, having access to the camera roll is one of them. This will be displayed when access to the camera roll has been denied completely. | `React.Element` | Defaults to `Access denied to camera roll.` message. |
 
 <br/>
 <br/>

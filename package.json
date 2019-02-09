@@ -37,11 +37,13 @@
     "url": "https://github.com/Luehang/react-native-camera-roll-gallery/issues"
   },
   "directories": {
+    "__tests__": "./__tests__",
     "example": "./example",
     "src": "./src"
   },
   "main": "./src/index.js",
   "files": [
+    "/__tests__",
     "/src",
     "LICENSE",
     "package.json",
@@ -58,6 +60,11 @@
   "devDependencies": {
     "react": "16.6.3",
     "react-native": "0.57.7",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "24.1.0",
+    "jest": "24.1.0",
+    "metro-react-native-babel-preset": "0.51.1",
+    "react-test-renderer": "16.6.3",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.9.0",
     "eslint-plugin-flowtype": "^3.2.0",
@@ -66,8 +73,18 @@
     "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-react-native": "^3.5.0"
   },
+  "jest": {
+    "preset": "react-native",
+    "modulePathIgnorePatterns": [
+      "<rootDir>/example/"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/example/"
+    ]
+  },
   "scripts": {
-    "lint": "./node_modules/.bin/eslint src/"
+    "lint": "./node_modules/.bin/eslint src/",
+    "test": "jest"
   },
   "license": "MIT"
 }

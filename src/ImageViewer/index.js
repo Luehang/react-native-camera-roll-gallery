@@ -145,7 +145,7 @@ export default class ImageViewer extends React.PureComponent {
   _onScroll = (e: Object) => {
     const yOffset = e.nativeEvent.contentOffset.y;
     const heightValue = this.state.height.__getValue();
-    if (yOffset <= 0 || yOffset >= 2 * heightValue) {
+    if (yOffset <= 50 || yOffset >= 2 * heightValue - 50) {
       this.props.onClose();
     }
   }
@@ -279,7 +279,7 @@ export default class ImageViewer extends React.PureComponent {
           images={images}
           initialPage={this.props.galleryInitialIndex}
           errorComponent={this.props.errorPageComponent}
-          // initialNumToRender={images.length + 1}
+          initialNumToRender={images.length + 1}
           flatListProps={this.props.pagesFlatListProps}
           pageMargin={this.props.pageMargin}
           sensitivePageScroll={this.props.sensitivePageScroll}

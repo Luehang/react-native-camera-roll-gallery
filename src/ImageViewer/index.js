@@ -279,7 +279,7 @@ export default class ImageViewer extends React.PureComponent {
           images={images}
           initialPage={this.props.galleryInitialIndex}
           errorComponent={this.props.errorPageComponent}
-          initialNumToRender={images.length + 1}
+          // initialNumToRender={images.length + 1}
           flatListProps={this.props.pagesFlatListProps}
           pageMargin={this.props.pageMargin}
           sensitivePageScroll={this.props.sensitivePageScroll}

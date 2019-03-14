@@ -139,6 +139,8 @@ Add an ``import`` to the top of the file.
 
 At minimal, declare the ``CameraRollGallery`` component in the ``render()``.
 
+> If you like [`react-native-image-layout`](https://github.com/Luehang/react-native-image-layout), please be sure to give it a star at [GitHub](https://github.com/Luehang/react-native-image-layout).
+
 ```javascript
 import CameraRollGallery from "react-native-camera-roll-gallery";
 

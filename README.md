@@ -7,6 +7,8 @@
 > An easy and simple to use React Native component to render a custom layout for CameraRoll 
 photos (next update will have videos) and displayed on a custom interactive image viewer for manipulation. Includes animations and support for both iOS and Android. Free and made possible along with costly maintenance and updates by [Lue Hang](https://www.facebook.com/lue.hang) (the author).
 
+> Check out the [docs](https://luehangs.site/lue_hang/projects/react-native-camera-roll-gallery) for a complete documentation.
+
 <br/>
 <br/>
 <br/>
@@ -139,7 +141,7 @@ Add an ``import`` to the top of the file.
 
 At minimal, declare the ``CameraRollGallery`` component in the ``render()``.
 
-> If you like [`react-native-image-layout`](https://github.com/Luehang/react-native-image-layout), please be sure to give it a star at [GitHub](https://github.com/Luehang/react-native-image-layout).
+> If you like [`react-native-image-layout`](https://github.com/Luehang/react-native-image-layout), please be sure to give it a star at [GitHub](https://github.com/Luehang/react-native-image-layout). Thanks.
 
 ```javascript
 import CameraRollGallery from "react-native-camera-roll-gallery";
@@ -214,6 +216,8 @@ render() {
 
 ### :small_blue_diamond: Camera Roll Layout Props of ``<CameraRollGallery />``
 
+> If you like [`react-native-image-layout`](https://github.com/Luehang/react-native-image-layout), please be sure to give it a star at [GitHub](https://github.com/Luehang/react-native-image-layout). Thanks.
+
 | Props                         | Description                                                                                                                                                                                    | Type              | Default |
 |-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|
 | `imagesPerRow`                | Number of images per row. | `number` | 3 |
@@ -248,6 +252,8 @@ render() {
 <br/>
 
 ### :small_blue_diamond: Gallery Props of ``<CameraRollGallery />``
+
+> If you like [`react-native-image-layout`](https://github.com/Luehang/react-native-image-layout), please be sure to give it a star at [GitHub](https://github.com/Luehang/react-native-image-layout). Thanks.
 
 | Props                         | Description                                                                                                                                                                                    | Type              | Default |
 |-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|---------|

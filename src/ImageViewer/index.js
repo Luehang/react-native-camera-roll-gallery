@@ -45,7 +45,8 @@ export default class ImageViewer extends React.PureComponent {
       dismissProgress: null,
       dismissScrollProgress: new Animated.Value(Dimensions.get("window").height),
       initialImageMeasurements: null,
-      openImageMeasurements: null
+      openImageMeasurements: null,
+      closeScrollEnabled: true
     };
   }
 
@@ -173,6 +174,7 @@ export default class ImageViewer extends React.PureComponent {
         scrollEventThrottle={1}
         pagingEnabled={true}
         showsVerticalScrollIndicator={false}
+        scrollEnabled={this.state.closeScrollEnabled}
       >
         <ScrollSpacerView width={width} height={height} />
         <Animated.View
@@ -229,6 +231,34 @@ export default class ImageViewer extends React.PureComponent {
               }
               this.props.onPageSelected &&
                 this.props.onPageSelected(index);
+            }}
+            onPinchTransforming={(transform) => {
+              if (transform.scale > 1 && this.state.closeScrollEnabled) {
+                this.setState({
+                  closeScrollEnabled: false
+                });
+              }
+            }}
+            onPinchStartReached={() => {
+              if (!this.state.closeScrollEnabled) {
+                this.setState({
+                  closeScrollEnabled: true
+                });
+              }
+            }}
+            onDoubleTapStartReached={() => {
+              if (!this.state.closeScrollEnabled) {
+                this.setState({
+                  closeScrollEnabled: true
+                });
+              }
+            }}
+            onDoubleTapEndReached={() => {
+              if (this.state.closeScrollEnabled) {
+                return this.setState({
+                  closeScrollEnabled: false
+                });
+              }
             }}
           />
           {

@@ -51,7 +51,7 @@
   ],
   "dependencies": {
     "prop-types": "^15.6.2",
-    "react-native-gallery-swiper": "^1.18.0"
+    "react-native-gallery-swiper": "^1.20.1"
   },
   "peerDependencies": {
     "react": "*",

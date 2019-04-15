@@ -1,6 +1,7 @@
 import React from "react";
 import { Easing, Platform, Animated, Image, StyleSheet, Dimensions } from "react-native";
 import GallerySwiper from "react-native-gallery-swiper";
+import SmartGallery from "react-native-smart-gallery";
 import PropTypes from "prop-types";
 import ViewerBackground from "./ViewerBackground";
 import ScrollSpacerView from "./ScrollSpacerView";
@@ -304,21 +305,18 @@ export default class ImageViewer extends React.PureComponent {
             onClose={onClose}
           />
         }
-        <GallerySwiper
-          style={{ flex: 1, backgroundColor: "black" }}
+        <SmartGallery
           images={images}
-          initialPage={this.props.galleryInitialIndex}
+          index={this.props.galleryInitialIndex}
           errorComponent={this.props.errorPageComponent}
-          initialNumToRender={images.length + 1}
-          flatListProps={this.props.pagesFlatListProps}
           pageMargin={this.props.pageMargin}
-          sensitivePageScroll={this.props.sensitivePageScroll}
+          sensitiveScroll={this.props.sensitivePageScroll}
           onPageScrollStateChanged={this.props.onPageScrollStateChanged}
           onPageScroll={this.props.onPageScroll}
           scrollViewStyle={this.props.pageScrollViewStyle}
           onSingleTapConfirmed={this.props.onPageSingleTapConfirmed}
           onLongPress={this.props.onPageLongPress}
-          imageComponent={(imageProps, imageDimensions, index) => {
+          renderItem={(imageProps, imageDimensions, index) => {
             if (!this.props.imagePageComponent) {
               return <Image {...imageProps} />;
             } else {
@@ -326,8 +324,8 @@ export default class ImageViewer extends React.PureComponent {
             }
           }}
           onPageSelected={(index) => {
+            this.props.onChangePhoto(images[index].id, index);
             if (index !== this.props.galleryInitialIndex) {
-              this.props.onChangePhoto(images[index].id, index);
               this.setState(
                 {
                   initialImageMeasurements: null,

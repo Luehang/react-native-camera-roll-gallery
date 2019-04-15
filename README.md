@@ -32,7 +32,7 @@ Check out the [docs](https://luehangs.site/lue_hang/projects/react-native-camera
 
 #### :information_source: Learn more about React Native with project examples along with Cyber Security and Ethical Hacking at [LH LABS](https://www.luehangs.site).
 
-Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-native-gallery-swiper).
+Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-native-gallery-swiper) & [`react-native-smart-gallery`](https://npmjs.com/package/react-native-smart-gallery).
 
 <br/>
 <br/>

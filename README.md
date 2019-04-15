@@ -4,10 +4,20 @@
 <br/>
 <br/>
 
-> An easy and simple to use React Native component to render a custom layout for CameraRoll 
+An easy and simple to use React Native component to render a custom layout for CameraRoll 
 photos (next update will have videos) and displayed on a custom interactive image viewer for manipulation. Includes animations and support for both iOS and Android. Free and made possible along with costly maintenance and updates by [Lue Hang](https://www.facebook.com/lue.hang) (the author).
 
-> Check out the [docs](https://luehangs.site/lue_hang/projects/react-native-camera-roll-gallery) for a complete documentation.
+Check out the [docs](https://luehangs.site/lue_hang/projects/react-native-camera-roll-gallery) for a complete documentation.
+
+- Large and optimized rendering for Camera Roll images.
+- Swipe up and down to close images with animations to original place. Support iOS.
+- Support for dynamic device rotation.
+- Easily and highly customizable.
+- Includes guestures and important event listeners for pan, pinch, single tap and double tap.
+- Includes zoom mode.
+- Easily customizable.
+- Intelligent scrolling detection to cushion rough swipe guestures.
+- Supports both iOS and Android.
 
 <br/>
 <br/>
@@ -33,18 +43,17 @@ Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-nativ
 <br/>
 <br/>
 
-# Index
+# :open_file_folder: Index
 
-### 1.  [Getting Started](#large_blue_diamond-getting-started)
-### 2.  [Manual Installation (Only iOS)](#large_blue_diamond-manual-installation)
-### 3.  [Usage Example](#large_blue_diamond-usage-example)
-### 4.  [API](#large_blue_diamond-api)
-### 5.  :books: [Props](#large_blue_diamond-props)
-### 6.  [Scroll State and Events](#large_blue_diamond-scroll-state-and-events)
-### 7.  [Example Project](#large_blue_diamond-example-project)
-### 8.  [Author](#large_blue_diamond-author)
-### 9.  [Contribute](#large_blue_diamond-contribute)
-### 10.  [License](#large_blue_diamond-license)
+### 1.  [Getting Started](#gem-getting-started)
+### 2.  [Manual Installation (Only iOS)](#gem-manual-installation)
+### 3.  [Usage Example](#tada-usage-example)
+### 4.  [API](#nut_and_bolt-api)
+### 5.  :books: [Props](#books-props)
+### 6.  [Example Project](#clapper-example-project)
+### 7.  [Author](#santa-author)
+### 8.  [Contribute](#clap-contribute)
+### 9.  [License](#page_facing_up-license)
 
 <br/>
 <br/>
@@ -55,7 +64,7 @@ Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-nativ
 <br/>
 <br/>
 
-## :large_blue_diamond: Getting Started
+## :gem: Getting Started
 
 Type in the following to the command line to install the dependency.
 
@@ -77,7 +86,7 @@ $ yarn add react-native-camera-roll-gallery
 <br/>
 <br/>
 
-## :large_blue_diamond: Manual Installation
+## :gem: Manual Installation
 
 #### :information_source: **No further installation is required for Android.**
 
@@ -135,7 +144,7 @@ It is required to add the `NSPhotoLibraryAddUsageDescription` key in your `Info.
 <br/>
 <br/>
 
-## :large_blue_diamond: Usage Example
+## :tada: Usage Example
 
 Add an ``import`` to the top of the file.
 
@@ -206,13 +215,13 @@ render() {
 <br/>
 <br/>
 
-## :large_blue_diamond: API
+## :nut_and_bolt: API
 
 ``<CameraRollGallery />`` component accepts the following props...
 
 <br/>
 
-# :large_blue_diamond: Props
+# :books: Props
 
 ### :small_blue_diamond: Camera Roll Layout Props of ``<CameraRollGallery />``
 
@@ -277,36 +286,7 @@ render() {
 <br/>
 <br/>
 
-## :large_blue_diamond: Scroll State and Events
-
-Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-native-gallery-swiper).
-
-* `onPageScroll(event: { position: number, offset: number, fraction: number }) => void`
-
-  The event object carries the following data: 
-
-  * `position: number`:  index of first page from the left that is currently visible.
-  * `offset: number`: value from range [0,1) describing stage between page transitions.
-  * `fraction: number`: means that (1 - x) fraction of the page at "position" index is visible, and x fraction of the next page is visible.
-
-* `onPageScrollStateChanged(state: string) => void`
-
-  Called when the page scrolling state has changed. The page scrolling state can be in 3 states:
-
-  * `'idle': string`: there is no interaction with the page scroller happening at the time.
-  * `'dragging': string`: there is currently an interaction with the page scroller.
-  * `'settling': string`: there was an interaction with the page scroller, and the page scroller is now finishing its closing or opening animation.
-
-<br/>
-<br/>
-<br/>
-
----
-<br/>
-<br/>
-<br/>
-
-## :large_blue_diamond: Example Project
+## :clapper: Example Project
 
 Perform steps 1-2 to run locally:
 
@@ -350,7 +330,7 @@ $ cd react-native-camera-roll-gallery/example/
 <br/>
 <br/>
 
-## :large_blue_diamond: Author
+## :santa: Author
 
 <a href="https://www.facebook.com/lue.hang">
 <img src="https://www.luehangs.site/images/lue-hang2018-circle-150px.png"/>
@@ -367,19 +347,19 @@ Free and made possible along with costly maintenance and updates by [Lue Hang](h
 <br/>
 <br/>
 
-## :large_blue_diamond: Contribute
+## :clap: Contribute
 
 [Pull requests](https://github.com/Luehang/react-native-camera-roll-gallery/pulls) are welcomed.
 
 <br/>
 
-### :large_blue_diamond: Contributors
+### :tophat: Contributors
 
 Contributors will be posted here.
 
 <br/>
 
-### :small_blue_diamond: Beginners
+### :baby: Beginners
 
 Not sure where to start, or a beginner? Take a look at the [issues page](https://github.com/Luehang/react-native-camera-roll-gallery/issues).
 
@@ -392,6 +372,6 @@ Not sure where to start, or a beginner? Take a look at the [issues page](https:/
 <br/>
 <br/>
 
-## :large_blue_diamond: License
+## :page_facing_up: License
 
 MIT © [Lue Hang](https://luehangs.site), as found in the LICENSE file.

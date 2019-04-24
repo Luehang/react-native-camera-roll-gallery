@@ -70,6 +70,31 @@ export default class CameraRollGallery extends React.PureComponent {
     onPageLongPress: PropTypes.func,
     renderPageHeader: PropTypes.func,
     renderPageFooter: PropTypes.func,
+
+    onDoubleTapConfirmed: PropTypes.func,
+    onDoubleTapStartReached: PropTypes.func,
+    onDoubleTapEndReached: PropTypes.func,
+    onPinchTransforming: PropTypes.func,
+    onPinchStartReached: PropTypes.func,
+    onPinchEndReached: PropTypes.func,
+    enableScale: PropTypes.bool,
+    enableTranslate: PropTypes.bool,
+    resizeMode: PropTypes.string,
+    enableResistance: PropTypes.bool,
+    resistantStrHorizontal: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.number,
+      PropTypes.string
+    ]),
+    resistantStrVertical: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.number,
+      PropTypes.string
+    ]),
+    onViewTransformed: PropTypes.func,
+    onTransformGestureReleased: PropTypes.func,
+    maxScale: PropTypes.bool,
+    maxOverScrollDistance: PropTypes.number,
   }
 
   static defaultProps = {
@@ -212,6 +237,23 @@ export default class CameraRollGallery extends React.PureComponent {
                     onPageLongPress={this.props.onPageLongPress}
                     renderPageHeader={this.props.renderPageHeader}
                     renderPageFooter={this.props.renderPageFooter}
+
+                    onDoubleTapConfirmed={this.props.onDoubleTapConfirmed}
+                    onDoubleTapStartReached={this.props.onDoubleTapStartReached}
+                    onDoubleTapEndReached={this.props.onDoubleTapEndReached}
+                    onPinchTransforming={this.props.onPinchTransforming}
+                    onPinchStartReached={this.props.onPinchStartReached}
+                    onPinchEndReached={this.props.onPinchEndReached}
+                    enableScale={this.props.enableScale}
+                    enableTranslate={this.props.enableTranslate}
+                    resizeMode={this.props.resizeMode}
+                    enableResistance={this.props.enableResistance}
+                    resistantStrHorizontal={this.props.resistantStrHorizontal}
+                    resistantStrVertical={this.props.resistantStrVertical}
+                    onViewTransformed={this.props.onViewTransformed}
+                    onTransformGestureReleased={this.props.onTransformGestureReleased}
+                    maxScale={this.props.maxScale}
+                    maxOverScrollDistance={this.props.maxOverScrollDistance}
                   />
               </Modal>
             </SafeAreaView>

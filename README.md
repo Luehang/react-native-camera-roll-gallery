@@ -279,6 +279,21 @@ render() {
 | `pageScrollViewStyle`         | Custom style for the `FlatList` component for gallery. | `Object` | {} |
 | `onPageSingleTapConfirmed`    | Fired after a single tap on page in gallery. `() => void`  | `Function` | |
 | `onPageLongPress`             | Fired after a long press on page in gallery. `() => void` | `Function` | |
+| `onDoubleTapConfirmed` | Executed after a double tap. `(index: number) => void` **Version \*2.1.0 update**. | `Function` |
+| `onDoubleTapStartReached` | Executed after scaling out or zooming out using double tap. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*2.1.0 update**. | `Function` |
+| `onDoubleTapEndReached` | Executed after scaling in or zooming in using double tap. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*2.1.0 update**. | `Function` |
+| `onPinchTransforming` | Executed while pinching to transform view or zoom (view transformer). `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*2.1.0 update**. | `Function` |
+| `onPinchStartReached` | Executed after scaling out or zooming out to initial size using the pinch gesture. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*2.1.0 update**. | `Function` |
+| `enableScale` | Enable or disable zoom and double tap zoom (view transformer). **Version \*2.1.0 update**. | `boolean` | `true` |
+| `maxScale` | Max zoom (view transformer). **Version \*2.1.0 update**. | `number` | `Math.max(imageWidth / viewWidth, imageHeight / viewHeight)` |
+| `enableTranslate` | Enable or disable moving while in zoom (view transformer). **Version \*2.1.0 update**. | `boolean` | `true` |
+| `resizeMode` | The mechanism that should be used to resize the image when the image's dimensions differ from the image view's dimensions. Expecting one of `"contain"`, `"cover"`, `"stretch"`, `"repeat"`, `"center"`. **Version \*2.1.0 update**. | `string` | `"contain"` |
+| `enableResistance` | Enable or disable resistance over panning (view transformer). **Version \*2.1.0 update**. | `boolean` | `true` |
+| `resistantStrHorizontal` | Resistant value for left and right panning (view transformer). `(dx: number) => number` **Version \*2.1.0 update**. | `Function`, `number` or `string` | `(dx) => (dx /= 3)` |
+| `resistantStrVertical` | Resistant value for top and bottom panning (view transformer). `(dy: number) => number` **Version \*2.1.0 update**. | `Function`, `number` or `string` | `(dy) => (dy /= 3)` |
+| `onViewTransformed` | Executed while being transformed in anyway (view transformer). `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*2.1.0 update**. | `Function` |
+| `onTransformGestureReleased` | Executed after a transform guesture released (view transformer). `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*2.1.0 update**. | `Function` |
+| `maxOverScrollDistance` | A number used to determine final scroll position triggered by fling (view transformer). **Version \*2.1.0 update**. | `number` | `20` |
 
 <br/>
 <br/>

@@ -46,14 +46,15 @@ Built with [`react-native-gallery-swiper`](https://npmjs.com/package/react-nativ
 # :open_file_folder: Index
 
 ### 1.  [Getting Started](#gem-getting-started)
-### 2.  [Manual Installation (Only iOS)](#gem-manual-installation)
-### 3.  [Usage Example](#tada-usage-example)
-### 4.  [API](#nut_and_bolt-api)
-### 5.  :books: [Props](#books-props)
-### 6.  [Example Project](#clapper-example-project)
-### 7.  [Author](#santa-author)
-### 8.  [Contribute](#clap-contribute)
-### 9.  [License](#page_facing_up-license)
+### 2.  [Android Installation](#gem-android-installation)
+### 3.  [iOS Installation](#gem-ios-installation)
+### 4.  [Usage Example](#tada-usage-example)
+### 5.  [API](#nut_and_bolt-api)
+### 6.  :books: [Props](#books-props)
+### 7.  [Example Project](#clapper-example-project)
+### 8.  [Author](#santa-author)
+### 9.  [Contribute](#clap-contribute)
+### 10. [License](#page_facing_up-license)
 
 <br/>
 <br/>
@@ -86,13 +87,32 @@ $ yarn add react-native-camera-roll-gallery
 <br/>
 <br/>
 
-## :gem: Manual Installation
-
-#### :information_source: **No further installation is required for Android.**
+## :gem: Android Installation
 
 <br/>
 
-#### :information_source: **THIS IS A REACT NATIVE AND iOS REQUIREMENT.**
+#### :information_source: **Android REQUIREMENT.**
+
+User's permission is required to access the Camera Roll.  Add the following to `AndroidManifest.xml` which can be found in `android/app/src/main`.
+
+```xml
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+```
+
+<br/>
+<br/>
+<br/>
+
+---
+<br/>
+<br/>
+<br/>
+
+## :gem: iOS Installation
+
+<br/>
+
+#### :information_source: **iOS REQUIREMENT.**
 
 1. `react-native-camera-roll-gallery` uses React Native's [`CameraRoll`](https://facebook.github.io/react-native/docs/cameraroll) API. It requires the `RCTCameraRoll` library to be linked. Learn more about [Linking Libraries (iOS) clicking here](https://facebook.github.io/react-native/docs/linking-libraries-ios) or read for further instructions.
 

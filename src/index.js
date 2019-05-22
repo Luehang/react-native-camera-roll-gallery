@@ -101,7 +101,7 @@ export default class CameraRollGallery extends React.PureComponent {
     imagesPerRow: 3,
     initialNumToRender: 6,
     removeClippedSubviews: true,
-    groupTypes: "SavedPhotos",
+    groupTypes: "All",
     assetType: "Photos",
     imageMargin: 5,
     backgroundColor: "white",

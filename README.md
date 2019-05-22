@@ -254,7 +254,7 @@ render() {
 | `containerWidth`              | Width of Camera Roll layout container. | `number` | device width |
 | `initialNumToRender`          | Specifies how many items we want to render on our first render pass for the Camera Roll layout. | `number` | 6 |
 | `removeClippedSubViews`       | "When true, offscreen child views (whose overflow value is hidden) are removed from their native backing superview when offscreen. This can improve scrolling performance on long lists. The default value is true. | `Boolean` | true | 
-| `groupTypes`                  | The group where the photos will be fetched, one of "Album", "All", "Event", "Faces", "Library", "PhotoStream" and "SavedPhotos". | `String` | "SavedPhotos" |
+| `groupTypes`                  | The group where the photos will be fetched, one of "Album", "All", "Event", "Faces", "Library", "PhotoStream" and "SavedPhotos". | `String` | "All" |
 | `assetType`                   | The asset type, one of "Photos", "Videos" or "All". | `String` | "Photos" |
 | `backgroundColor`             | Set background color of Camera Roll layout. | `String` | "white" |
 | `emptyText`                   | Text to display instead of a list when there are no photos found. | `String` | "No photos." |

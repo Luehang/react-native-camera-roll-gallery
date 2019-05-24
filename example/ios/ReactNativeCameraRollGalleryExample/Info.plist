@@ -57,8 +57,8 @@
 		</dict>
 	</dict>
 	<key>NSPhotoLibraryUsageDescription</key>
-    <string>Requesting access to the photo library.</string>
+	<string>Requesting access to the photo library.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-    <string>Requesting write-only access permission.</string>
+	<string>Requesting write-only access permission.</string>
 </dict>
 </plist>

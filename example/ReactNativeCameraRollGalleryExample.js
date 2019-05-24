@@ -9,6 +9,7 @@ import {
   Text
 } from "react-native";
 import CameraRollGallery from "react-native-camera-roll-gallery";
+// import CameraRollGallery from "./src";
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;

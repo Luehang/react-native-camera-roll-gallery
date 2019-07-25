@@ -27,7 +27,7 @@
     "Lue Hang",
     "luehang"
   ],
-  "homepage": "https://github.com/Luehang/react-native-camera-roll-gallery",
+  "homepage": "https://luehangs.site/lue_hang/projects/react-native-camera-roll-gallery",
   "author": {
     "name": "Lue Hang",
     "email": "lue_hang@hotmail.com",
@@ -55,8 +55,8 @@
   ],
   "dependencies": {
     "prop-types": "^15.6.2",
-    "react-native-smart-gallery": "^1.0.0",
-    "react-native-gallery-swiper": "^1.20.1"
+    "react-native-smart-gallery": "^1.0.3",
+    "react-native-gallery-swiper": "^1.22.1"
   },
   "peerDependencies": {
     "react": "*",

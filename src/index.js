@@ -95,6 +95,7 @@ export default class CameraRollGallery extends React.PureComponent {
     onTransformGestureReleased: PropTypes.func,
     maxScale: PropTypes.bool,
     maxOverScrollDistance: PropTypes.number,
+    enableVerticalExit: PropTypes.bool
   }
 
   static defaultProps = {
@@ -109,6 +110,7 @@ export default class CameraRollGallery extends React.PureComponent {
     loaderColor: "lightblue",
     imageContainerStyle: {},
     sensitivePageScroll: false,
+    enableVerticalExit: true,
     permissionDialogTitle: "Read Storage Permission",
     permissionDialogMessage: "Needs access to your photos " +
       "so you can use these awesome services.",
@@ -254,6 +256,7 @@ export default class CameraRollGallery extends React.PureComponent {
                     onTransformGestureReleased={this.props.onTransformGestureReleased}
                     maxScale={this.props.maxScale}
                     maxOverScrollDistance={this.props.maxOverScrollDistance}
+                    enableVerticalExit={this.props.enableVerticalExit}
                   />
               </Modal>
             </SafeAreaView>

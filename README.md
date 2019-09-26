@@ -184,6 +184,19 @@ render() {
 //...
 ```
 
+<br/>
+
+***
+<br/>
+
+### :small_blue_diamond: Hint: Adding a Close Button for Gallery
+
+| Props | Description | Type | Default |
+|-------|-------------|------|---------|
+| `enableVerticalExit` | Enable or disable exiting from swiping up or down in gallery. **Version \*5.3.0 update**. | `Boolean` | `true` |
+
+<br/>
+
 To select, callback and manipulate an image...
 
 ```javascript
@@ -314,6 +327,7 @@ render() {
 | `onViewTransformed` | Executed while being transformed in anyway (view transformer). `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*2.1.0 update**. | `Function` |
 | `onTransformGestureReleased` | Executed after a transform guesture released (view transformer). `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` **Version \*2.1.0 update**. | `Function` |
 | `maxOverScrollDistance` | A number used to determine final scroll position triggered by fling (view transformer). **Version \*2.1.0 update**. | `number` | `20` |
+| `enableVerticalExit` | Enable or disable exiting from swiping up or down in gallery. **Version \*5.3.0 update**. | `Boolean` | `true` |
 
 <br/>
 <br/>

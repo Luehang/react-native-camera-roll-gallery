@@ -10,7 +10,7 @@ photos (next update will have videos) and displayed on a custom interactive imag
 Check out the [docs](https://luehangs.site/lue_hang/projects/react-native-camera-roll-gallery) for a complete documentation.
 
 - Optimized for large list rendering for Camera Roll images.
-- Swipe up and down to close images with animations to original place. Support iOS. (Feature now disabled and stable feature will be released in future releases)
+- Swipe up and down to close images with animations to original place. Supports iOS and Android.
 - Support for dynamic device rotation.
 - Easily and highly customizable.
 - Includes guestures and important event listeners for pan, pinch, single tap and double tap.

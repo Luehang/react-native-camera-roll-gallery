@@ -9,7 +9,7 @@
   dependencies:
     "@babel/highlight" "^7.0.0"
 
-"@babel/core@^7.0.0", "@babel/core@^7.1.0", "@babel/core@^7.4.4":
+"@babel/core@7.4.4", "@babel/core@^7.0.0", "@babel/core@^7.1.0":
   version "7.4.4"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.4.4.tgz#84055750b05fcd50f9915a826b44fa347a825250"
   integrity sha512-lQgGX3FPRgbz2SKmhMtYgJvVzGZrmjaF4apZ2bLwofAKiSjxU0drPh4S/VasyYXwaTs+A1gvQ45BN8SQJzHsQQ==
@@ -607,7 +607,7 @@
     pirates "^4.0.0"
     source-map-support "^0.5.9"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.4.4":
+"@babel/runtime@7.4.4", "@babel/runtime@^7.0.0":
   version "7.4.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.4.tgz#dc2e34982eb236803aa27a07fea6857af1b9171d"
   integrity sha512-w0+uT71b6Yi7i5SE0co4NioIpSYS6lLiXvCzWzGSKvpK5vdQtCbICHMj+gbAKAOtxiV6HsVh/MBdaF9EQ6faSg==
@@ -840,6 +840,11 @@
     ws "^1.1.0"
     xcode "^2.0.0"
     xmldoc "^0.4.0"
+
+"@react-native-community/viewpager@*":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/viewpager/-/viewpager-3.3.0.tgz#e613747a43a31a6f3278f817ba96fdaaa7941f23"
+  integrity sha512-tyzh79l4t/hxiyS9QD3LRmWMs8KVkZzjrkQ8U8+8To1wmvVCBtp8BenvNsDLTBO7CpO/YmiThpmIdEZMr1WuVw==
 
 "@types/babel__core@^7.1.0":
   version "7.1.2"
@@ -1192,7 +1197,7 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
   integrity sha512-ReZxvNHIOv88FlT7rxcXIIC0fPt4KZqZbOlivyWtXLt8ESx84zd3kMC6iK5jVeS2qt+g7ftS7ye4fi06X5rtRQ==
 
-babel-jest@^24.8.0:
+babel-jest@24.8.0, babel-jest@^24.8.0:
   version "24.8.0"
   resolved "https://registry.yarnpkg.com/babel-jest/-/babel-jest-24.8.0.tgz#5c15ff2b28e20b0f45df43fe6b7f2aae93dba589"
   integrity sha512-+5/kaZt4I9efoXzPlZASyK/lN9qdRKmmUav9smVc0ruPQD7IsfucQ87gpOE8mn2jbDuS6M/YOW6n3v9ZoIfgnw==
@@ -3345,7 +3350,7 @@ jest-worker@^24.0.0-alpha.6, jest-worker@^24.6.0:
     merge-stream "^1.0.1"
     supports-color "^6.1.0"
 
-jest@^24.8.0:
+jest@24.8.0:
   version "24.8.0"
   resolved "https://registry.yarnpkg.com/jest/-/jest-24.8.0.tgz#d5dff1984d0d1002196e9b7f12f75af1b2809081"
   integrity sha512-o0HM90RKFRNWmAWvlyV8i5jGZ97pFwkeVoGvPW1EtLTgJc2+jcuqcbbqcSZLE/3f2S5pt0y2ZBETuhpWNl1Reg==
@@ -3875,7 +3880,7 @@ metro-react-native-babel-preset@0.51.1:
     metro-babel7-plugin-react-transform "0.51.1"
     react-transform-hmr "^1.0.4"
 
-metro-react-native-babel-preset@^0.54.1:
+metro-react-native-babel-preset@0.54.1:
   version "0.54.1"
   resolved "https://registry.yarnpkg.com/metro-react-native-babel-preset/-/metro-react-native-babel-preset-0.54.1.tgz#b8f03865c381841d7f8912e7ba46804ea3a928b8"
   integrity sha512-Hfr32+u5yYl3qhYQJU8NQ26g4kQlc3yFMg7keVR/3H8rwBIbFqXgsKt8oe0dOrv7WvrMqBHhDtVdU9ls3sSq8g==
@@ -4130,9 +4135,9 @@ minizlib@^1.1.1:
     minipass "^2.2.1"
 
 mixin-deep@^1.2.0:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/mixin-deep/-/mixin-deep-1.3.1.tgz#a49e7268dce1a0d9698e45326c5626df3543d0fe"
-  integrity sha512-8ZItLHeEgaqEvd5lYBXfm4EZSFCX29Jb9K+lAHhDKzReKBQKj3R+7NOF6tjqYi9t4oI8VUfaWITJQm86wnXGNQ==
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/mixin-deep/-/mixin-deep-1.3.2.tgz#1120b43dc359a785dce65b55b82e257ccf479566"
+  integrity sha512-WRoDn//mXBiJ1H40rqa3vH0toePwSsGb45iInWlTySa+Uu4k3tYUSxa2v1KqAiLtvlrSzaExqS1gtk96A9zvEA==
   dependencies:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
@@ -4852,6 +4857,94 @@ react-is@^16.8.1, react-is@^16.8.3, react-is@^16.8.4:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
   integrity sha512-aUk3bHfZ2bRSVFFbbeVS4i+lNPZr3/WM5jT2J5omUVV1zzcs1nAaf3l51ctA5FFvCRbhrH0bdAsRRQddFJZPtA==
+
+react-native-camera-roll-gallery@^2.1.1:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-camera-roll-gallery/-/react-native-camera-roll-gallery-2.3.0.tgz#93a114c38d4f7f71873fc28dcfde21153c20fef5"
+  integrity sha512-ClivL5Ae/9YzUmO2j/FPkJKHqpAfYRvDfZlhM3WZ3/N9TNvsjJOWEhVou8uXLJqXk5mCcRSIm998MUkHb5mlkA==
+  dependencies:
+    prop-types "^15.6.2"
+    react-native-gallery-swiper "^1.23.1"
+    react-native-smart-gallery "^1.0.3"
+
+react-native-easy-guesture-responder@^1.1.2, react-native-easy-guesture-responder@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/react-native-easy-guesture-responder/-/react-native-easy-guesture-responder-1.1.3.tgz#0a9c0e8eb68b9b43b4f86e4689786ba7525cc1b9"
+  integrity sha512-/1yHMRcslMWQJc1iRNCSjJ32npPrY3Atme0lzKxmhYJg67E7Douowq2FalGEegdid8yeZVnPKk+BkyIGyx2dCw==
+  dependencies:
+    prop-types "^15.6.2"
+
+react-native-easy-view-transformer@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/react-native-easy-view-transformer/-/react-native-easy-view-transformer-1.1.4.tgz#e4afc8f35f12e1dbc9e2cbb1b001b560a727bee3"
+  integrity sha512-KFADdsNYh1j+7dzZqlk6y/h8IgKbsDDLrJBc3ybYgP8wOBc1QoXNVmEid9sW/jc7ogzMsVFENkWIbMtEuo+kIQ==
+  dependencies:
+    prop-types "^15.6.2"
+    react-native-easy-guesture-responder "^1.1.2"
+    react-native-scrolling "^1.0.2"
+
+react-native-gallery-swiper@^1.23.1:
+  version "1.24.1"
+  resolved "https://registry.yarnpkg.com/react-native-gallery-swiper/-/react-native-gallery-swiper-1.24.1.tgz#85f585dd3a541fd5be8e91089f15fa24c7cac967"
+  integrity sha512-rp+dexfNVfaJHoPZvJWDRQV48JbNG3zhBim45ad6od7zILbytdeuFMn2q6NtpyqUzmFRRrfU7qInnzwLGTutJw==
+  dependencies:
+    prop-types "^15.6.2"
+    react-native-easy-guesture-responder "^1.1.3"
+    react-native-image-transformer "^1.2.1"
+    react-native-page-list "^1.1.1"
+
+react-native-image-transformer@^1.2.1, react-native-image-transformer@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-image-transformer/-/react-native-image-transformer-1.3.0.tgz#416e7740a604c5665cffc9ff8e45ae24d0bf8e4c"
+  integrity sha512-Lq8XsDIO5t7JprqnLkmy3hqvdwoSqRpYd4xPETYn6XRhUUrzHdLorYiy0l/okcBFpYJX7U9a0hXa3FlF7rCo6Q==
+  dependencies:
+    prop-types "^15.6.2"
+    react-native-easy-view-transformer "^1.1.4"
+
+react-native-page-list@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-page-list/-/react-native-page-list-1.1.1.tgz#b66cec532e1494eb296037872d0beb360822d022"
+  integrity sha512-5k7emludG6ZIrmrtbzhdNXNEQVuZIDbKqOYo/AaqaVbwiZZz7VmKhs4NU/Re6Oxp4ptuqlCvBnXkXBVNf/3fnA==
+  dependencies:
+    prop-types "^15.6.2"
+    react-native-easy-guesture-responder "^1.1.2"
+    react-native-scrolling "^1.0.2"
+
+react-native-scrolling@^1.0.2:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-scrolling/-/react-native-scrolling-1.0.3.tgz#ad3e964070d6a8c713f1bd703171ab26d83ab5d5"
+  integrity sha512-V8ORRnRA4sdOREJlDHxnPfM/7IK6rj/HZejgTaym1ACjKr9a3Pej4ZDOQA9qnBgNac8kMVhDup40HgJxYG//EA==
+  dependencies:
+    prop-types "^15.6.2"
+
+react-native-smart-gallery@^1.0.3:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-smart-gallery/-/react-native-smart-gallery-1.1.1.tgz#d9c3e250055b56b5f35e8b9f0db4b35ad74cdb89"
+  integrity sha512-FxraMNqf6bJ4HEMw7Pw9CSv6PpOPGiLkhopWR+N75SaCWLaB5wIc5Zw1/HOLmp6PFwW+dW7XTfN1yxBqLvLyRg==
+  dependencies:
+    prop-types "^15.6.2"
+    react-native-easy-guesture-responder "^1.1.2"
+    react-native-image-transformer "^1.3.0"
+    react-native-smart-page "^1.1.2"
+
+react-native-smart-page@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-smart-page/-/react-native-smart-page-1.1.2.tgz#1b01173baaa877d532192ca4b5252df30150b0c3"
+  integrity sha512-VtWz3eN7+8ykC/zVulqr8KWduMivzK9DGDEscicnPf+Ui7vHzyFWtt/DkpTkTS/zK9q6aQiKQNnQofREZj6G2w==
+  dependencies:
+    prop-types "^15.6.2"
+    react-native-easy-guesture-responder "^1.1.2"
+    react-native-scrolling "^1.0.2"
+    react-native-swipe-render "^3.0.2"
+
+react-native-swipe-render@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-swipe-render/-/react-native-swipe-render-3.0.2.tgz#56912e0746f1725624a7f86089c71b9e063b650c"
+  integrity sha512-pWxrGJzPm/rb25z4ZfLwLnZb7WBQp7JQ7yfc6Zzag1ofrpp0kfaACcIwoLdh6emoMZasz14GcBdfiU8PyfG4aA==
+  dependencies:
+    prop-types "^15.6.2"
+  optionalDependencies:
+    "@react-native-community/viewpager" "*"
 
 react-native@0.59.8:
   version "0.59.8"

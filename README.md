@@ -143,7 +143,7 @@ render() {
 
 ## :tada: Example Usage With Provided CameraRoll
 
-:information_source: Additional installation is required to install additional package and link binaries. Follow the [Installation section](#gem-installation).
+:information_source: Additional installation is required to install additional package and link binaries. Follow the [Installation section](#gem-installation-for-provided-cameraroll).
 
 > If you like [`react-native-camera-roll-gallery`](https://github.com/Luehang/react-native-camera-roll-gallery), please be sure to give it a star at [GitHub](https://github.com/Luehang/react-native-camera-roll-gallery). Thanks.
 

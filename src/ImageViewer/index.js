@@ -3,6 +3,7 @@ import { Easing, Platform, Animated, Image, Dimensions } from "react-native";
 import GallerySwiper from "react-native-gallery-swiper";
 import SmartGallery from "react-native-smart-gallery";
 import PropTypes from "prop-types";
+import DefaultHeader from "./DefaultHeader";
 import Header from "./Header";
 import Footer from "./Footer";
 
@@ -181,13 +182,16 @@ export default class ImageViewer extends React.PureComponent {
         }}
       >
         {
-          renderPageHeader &&
-          <Header
-            renderPageHeader={renderPageHeader}
-            images={images}
-            galleryIndex={galleryIndex}
-            onClose={onClose}
-          />
+          renderPageHeader
+            ? <Header
+              renderPageHeader={renderPageHeader}
+              images={images}
+              galleryIndex={galleryIndex}
+              onClose={onClose}
+            />
+            : <DefaultHeader
+              onClose={onClose}
+            />
         }
         <GallerySwiper
           style={{ flex: 1, backgroundColor: "black" }}
@@ -297,11 +301,14 @@ export default class ImageViewer extends React.PureComponent {
         }}
       >
         {
-          renderPageHeader &&
-            <Header
+          renderPageHeader
+            ? <Header
               renderPageHeader={renderPageHeader}
               images={images}
               galleryIndex={galleryIndex}
+              onClose={onClose}
+            />
+            : <DefaultHeader
               onClose={onClose}
             />
         }

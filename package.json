@@ -49,6 +49,7 @@
   "files": [
     "/__tests__",
     "/src",
+    "/assets",
     "LICENSE",
     "package.json",
     "README.md"

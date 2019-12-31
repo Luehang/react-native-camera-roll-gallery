@@ -37,9 +37,9 @@ export default class ReactNativeCameraRollGalleryExample extends React.PureCompo
         </TouchableWithoutFeedback>
         <View style={{}}>
           <Text style={[styles.profilePrimary, styles.whiteText]}>Lue Hang</Text>
-          <Text style={[styles.profileSecondary, styles.whiteText]}>
-            {platform === "ios" ? i + ":  " + item.image.filename : i + ":  " + item.image.uri}
-          </Text>
+          {/* <Text style={[styles.profileSecondary, styles.whiteText]}>
+            {platform === "ios" ? i + ":  " + item.image.filename : i + ":  " + item.uri}
+          </Text> */}
         </View>
       </View>
     );
@@ -49,9 +49,40 @@ export default class ReactNativeCameraRollGalleryExample extends React.PureCompo
     return (
       <View style={styles.container}>
         <CameraRollGallery
+          enableCameraRoll={true}
           cameraRollListHeader={this._renderHeaderComponent}
           renderPageHeader={this._renderPageHeader}
         />
+        {/* <CameraRollGallery
+          enableCameraRoll={false}
+          onGetData={() => {
+            return {
+              assets: [
+                // Can be used with different image object fieldnames.
+                // Ex. source, source.uri, uri, URI, url, URL
+                { uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg" },
+                // { source: require("yourApp/image.png"),
+                //     // IMPORTANT: It is REQUIRED for LOCAL IMAGES
+                //     // to include a dimensions field with the
+                //     // actual width and height of the image or
+                //     // it will throw an error.
+                //     dimensions: { width: 1080, height: 1920 } },
+                { source: { uri: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-women-beauty-40901.jpg" } },
+                { uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg" },
+                { URI: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg" },
+                { url: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg" },
+                { URL: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg" },
+              ],
+              pageInfo: {
+                hasNextPage: false
+              }
+            };
+          }}
+
+
+          cameraRollListHeader={this._renderHeaderComponent}
+          // renderPageHeader={this._renderPageHeader}
+        /> */}
       </View>
     );
   }
@@ -107,8 +138,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     paddingHorizontal: 5
   },
-  profileSecondary: {
-    fontSize: 12,
-    paddingHorizontal: 5
-  },
+  // profileSecondary: {
+  //   fontSize: 12,
+  //   paddingHorizontal: 5
+  // },
 });

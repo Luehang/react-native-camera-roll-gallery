@@ -29,7 +29,9 @@ Check out the [docs](https://luehangs.site/lue_hang/projects/react-native-camera
 <br/>
 <br/>
 
-![react-native-camera-roll-gallery](https://luehangs.site/videos/react-native-camera-roll-gallery-demo.gif)
+<h1 align="center">
+    <img src="https://luehangs.site/videos/react-native-camera-roll-gallery-demo.gif" alt="react-native-camera-roll-gallery" />
+</h1>
 
 #### :information_source: Learn more about React Native with project examples along with Cyber Security and Ethical Hacking at [LueHsoft](https://www.luehangs.site).
 
@@ -160,35 +162,6 @@ render() {
 <br/>
 <br/>
 <a href="https://luehangs.site/marketplace/product/RN%20Posting%20Demo%20App%20Kit"><img src="https://luehangs.site/images/lh-mobile-strip.jpg" alt="LueHsoft LueH LABS Lue Hang luehang"/></a>
-<br/>
-<br/>
-
-## :tada: Usage Example
-
-Add an ``import`` to the top of the file.
-
-At minimal, declare the ``CameraRollGallery`` component in the ``render()``.
-
-> If you like [`react-native-image-layout`](https://github.com/Luehang/react-native-image-layout), please be sure to give it a star at [GitHub](https://github.com/Luehang/react-native-image-layout). Thanks.
-
-```javascript
-import CameraRollGallery from "react-native-camera-roll-gallery";
-
-//...
-render() {
-    return (
-        <CameraRollGallery />
-    );
-}
-//...
-```
-
-<br/>
-<br/>
-<br/>
-
----
-<br/>
 <br/>
 <br/>
 

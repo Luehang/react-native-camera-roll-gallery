@@ -179,18 +179,18 @@ render() {
 
 | Props | Description | Type | Default |
 | ----- | ----------- | ---- | ------- |
-| `enableCameraRoll`            | Enable the provide default CameraRoll. **Version \*3.0.0 update** | `bool` | `true` |
+| `enableCameraRoll`            | Enable the provide default CameraRoll. **Version \*3.0.0 update** | `boolean` | `true` |
 | `onGetData`                   | Custom function to render provided images. `({ itemCount: number, groupTypes: string, assetType: string }) => { assets: object, pageInfo: { hasNextPage: boolean } }` Find an example at the [example section](#tada-example-usage-customization). **Version \*3.0.0 update** | `Function` | |
 | `imagesPerRow`                | Number of images per row. | `number` | 3 |
 | `imageMargin`                 | Margin size of one image. | `number` | 5 |
 | `containerWidth`              | Width of Camera Roll layout container. | `number` | device width |
 | `initialNumToRender`          | Specifies how many items we want to render on our first render pass for the Camera Roll layout. | `number` | 6 |
 | `itemCount`                   | The number of item to fetch and render.  `({ itemCount, groupTypes, assetType }) => object` **Version \*3.0.0 update** | `number` | 1000 |
-| `groupTypes`                  | The group where the photos will be fetched, one of "Album", "All", "Event", "Faces", "Library", "PhotoStream" and "SavedPhotos". | `String` | "All" |
-| `assetType`                   | The asset type, one of "Photos", "Videos" or "All". | `String` | "Photos" |
+| `groupTypes`                  | The group where the photos will be fetched, one of "Album", "All", "Event", "Faces", "Library", "PhotoStream" and "SavedPhotos". | `string` | "All" |
+| `assetType`                   | The asset type, one of "Photos", "Videos" or "All". | `string` | "Photos" |
 | `removeClippedSubViews`       | "When true, offscreen child views (whose overflow value is hidden) are removed from their native backing superview when offscreen. This can improve scrolling performance on long lists. The default value is true. | `boolean` | true |
-| `backgroundColor`             | Set background color of Camera Roll layout. | `String` | "white" |
-| `emptyText`                   | Text to display instead of a list when there are no photos found. | `String` | "No photos." |
+| `backgroundColor`             | Set background color of Camera Roll layout. | `string` | "white" |
+| `emptyText`                   | Text to display instead of a list when there are no photos found. | `string` | "No photos." |
 | `emptyTextStyle`              | Styles to apply to the `emptyText`. | `object` | {textAlign: "center"} |
 | `loader`                      | Camera Roll loader component node. | `React.Component` | `<ActivityIndicator />` |
 | `loaderColor`                 | The foreground color of the initial load spinner. | `string` | `"lightblue"` |

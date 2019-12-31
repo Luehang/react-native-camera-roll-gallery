@@ -224,7 +224,7 @@ export default class CameraRollBrowser extends React.PureComponent {
                 index: index,
                 id: Math.random().toString(36).substring(7),
                 ...asset,
-                source: source, 
+                source: source,
                 uri: source.uri
               };
             }

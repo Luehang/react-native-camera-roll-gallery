@@ -62,6 +62,9 @@
     "react": "*",
     "react-native": "*"
   },
+  "optionalDependencies": {
+    "@react-native-community/cameraroll": "*"
+  },
   "devDependencies": {
     "react": "16.6.3",
     "react-native": "0.57.7",

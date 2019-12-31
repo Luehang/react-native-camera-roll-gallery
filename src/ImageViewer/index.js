@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import Header from "./Header";
 import Footer from "./Footer";
 
-import type { ImageMeasurements } from "./Utils";
+import type { ImageMeasurements } from "./../utils";
 
 export default class ImageViewer extends React.PureComponent {
   static propTypes = {
@@ -298,12 +298,12 @@ export default class ImageViewer extends React.PureComponent {
       >
         {
           renderPageHeader &&
-          <Header
-            renderPageHeader={renderPageHeader}
-            images={images}
-            galleryIndex={galleryIndex}
-            onClose={onClose}
-          />
+            <Header
+              renderPageHeader={renderPageHeader}
+              images={images}
+              galleryIndex={galleryIndex}
+              onClose={onClose}
+            />
         }
         <SmartGallery
           images={images}

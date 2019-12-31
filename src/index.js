@@ -16,10 +16,14 @@ export default class CameraRollGallery extends React.PureComponent {
   _imageSizeMeasurers: { [imageId: string]: () => void }
 
   static propTypes = {
+    enableCameraRoll: PropTypes.bool,
+    onGetData: PropTypes.func,
+    itemCount: PropTypes.number,
     imagesPerRow: PropTypes.number,
     initialNumToRender: PropTypes.number,
     removeClippedSubviews: PropTypes.bool,
     cameraRollFlatListProps: PropTypes.object,
+    catchGetPhotosError: PropTypes.func,
     groupTypes: PropTypes.oneOf([
       "Album",
       "All",
@@ -99,6 +103,8 @@ export default class CameraRollGallery extends React.PureComponent {
   }
 
   static defaultProps = {
+    enableCameraRoll: true,
+    itemCount: 1000,
     imagesPerRow: 3,
     initialNumToRender: 6,
     removeClippedSubviews: true,
@@ -154,7 +160,7 @@ export default class CameraRollGallery extends React.PureComponent {
   }
 
   _setMediaData = (data) => {
-    this.setState({ resolvedData: data });
+    this.setState({ resolvedData: this.state.resolvedData.concat(data) });
   }
 
   openImageViewer = async (imageId, index) => {
@@ -176,11 +182,15 @@ export default class CameraRollGallery extends React.PureComponent {
     return (
       <View style={styles.container} {...this.props}>
         <CameraRollBrowser
+          enableCameraRoll={this.props.enableCameraRoll}
+          onGetData={this.props.onGetData}
+          itemCount={this.props.itemCount}
           images={this.state.resolvedData}
           imagesPerRow={this.props.imagesPerRow}
           initialNumToRender={this.props.initialNumToRender}
           removeClippedSubviews={this.props.removeClippedSubviews}
           cameraRollFlatListProps={this.props.cameraRollFlatListProps}
+          catchGetPhotosError={this.props.catchGetPhotosError}
           groupTypes={this.props.groupTypes}
           assetType={this.props.assetType}
           imageMargin={this.props.imageMargin}

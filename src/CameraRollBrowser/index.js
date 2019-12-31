@@ -82,7 +82,7 @@ export default class CameraRollBrowser extends React.PureComponent {
     };
   }
 
-  componentWillMount = async () => {
+  componentDidMount = async () => {
     if (this.props.enableCameraRoll) {
       if (Platform.OS === "android") {
         const granted = await PermissionsAndroid.request(

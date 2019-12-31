@@ -40,9 +40,6 @@ export default class ImageCell extends React.PureComponent {
 			imageLoaded: false
 		};
 		this._readyToMeasure = false;
-	}
-
-	componentWillMount() {
 		var { width } = Dimensions.get("window");
 		var { imageMargin, imagesPerRow, containerWidth } = this.props;
 
@@ -50,7 +47,9 @@ export default class ImageCell extends React.PureComponent {
 			width = containerWidth;
 		}
 		this._imageSize = (width - (imagesPerRow + 1) * imageMargin) / imagesPerRow;
+	}
 
+	componentDidMount() {
 		this.context.onSourceContext(
 			this.props.imageId,
 			this.measurePhoto,

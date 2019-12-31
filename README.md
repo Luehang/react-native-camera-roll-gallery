@@ -185,7 +185,7 @@ render() {
 | `imageMargin`                 | Margin size of one image. | `number` | 5 |
 | `containerWidth`              | Width of Camera Roll layout container. | `number` | device width |
 | `initialNumToRender`          | Specifies how many items we want to render on our first render pass for the Camera Roll layout. | `number` | 6 |
-| `itemCount`                   | The number of item to fetch and render.  `({ itemCount, groupTypes, assetType }) => object` **Version \*3.0.0 update** | `number` | 1000 |
+| `itemCount`                   | The number of item to fetch and render. **Version \*3.0.0 update** | `number` | 1000 |
 | `groupTypes`                  | The group where the photos will be fetched, one of "Album", "All", "Event", "Faces", "Library", "PhotoStream" and "SavedPhotos". | `string` | "All" |
 | `assetType`                   | The asset type, one of "Photos", "Videos" or "All". | `string` | "Photos" |
 | `removeClippedSubViews`       | "When true, offscreen child views (whose overflow value is hidden) are removed from their native backing superview when offscreen. This can improve scrolling performance on long lists. The default value is true. | `boolean` | true |

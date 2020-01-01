@@ -102,7 +102,10 @@ render() {
     return (
         <CameraRollGallery
             enableCameraRoll={false} // default true
-            // get data logic goes here
+            // Get data logic goes here.
+            // This will get trigger initially
+            // and when it reached the end
+            // if there is more.
             onGetData={() => {
                 return {
                     assets: [
@@ -180,7 +183,7 @@ render() {
 | Props | Description | Type | Default |
 | ----- | ----------- | ---- | ------- |
 | `enableCameraRoll`            | Enable the provide default CameraRoll. **Version \*3.0.0 update** | `boolean` | `true` |
-| `onGetData`                   | Custom function to render provided images. `({ itemCount: number, groupTypes: string, assetType: string }) => { assets: object, pageInfo: { hasNextPage: boolean } }` Find an example at the [example section](#tada-example-usage-customization). **Version \*3.0.0 update** | `Function` | |
+| `onGetData`                   | Custom function to render provided images from initial to when reaching the end.  "Get" data logic should go here. `({ itemCount: number, groupTypes: string, assetType: string }) => { assets: object, pageInfo: { hasNextPage: boolean } }` Find an example at the [example section](#tada-example-usage-customization). **Version \*3.0.0 update** | `Function` | |
 | `imagesPerRow`                | Number of images per row. | `number` | 3 |
 | `imageMargin`                 | Margin size of one image. | `number` | 5 |
 | `containerWidth`              | Width of Camera Roll layout container. | `number` | device width |

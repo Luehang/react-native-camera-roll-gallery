@@ -215,6 +215,8 @@ render() {
 
 ### :small_blue_diamond: Props of ``<CameraRollGallery />`` WITH DEFAULT CAMERAROLL
 
+Inorder to use these props, make sure `enableCameraRoll` prop is set to `true`.
+
 | Props | Description | Type | Default |
 | ----- | ----------- | ---- | ------- |
 | `catchGetPhotosError`         | Custom function to catch errors from getting and loading images.  `(error) => void` **Version \*3.0.0 update** | `Function` | |

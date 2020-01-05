@@ -188,7 +188,7 @@ render() {
 | `imageMargin`                 | Margin size of one image. | `number` | 5 |
 | `containerWidth`              | Width of Camera Roll layout container. | `number` | device width |
 | `initialNumToRender`          | Specifies how many items we want to render on our first render pass for the Camera Roll layout. | `number` | 6 |
-| `itemCount`                   | The number of item to fetch and render. **Version \*3.0.0 update** | `number` | 1000 |
+| `itemCount`                   | The number of item to fetch and render. **Version \*3.0.0 update** | `number` | 500 |
 | `groupTypes`                  | The group where the photos will be fetched, one of "Album", "All", "Event", "Faces", "Library", "PhotoStream" and "SavedPhotos". | `string` | "All" |
 | `assetType`                   | The asset type, one of "Photos", "Videos" or "All". | `string` | "Photos" |
 | `removeClippedSubViews`       | "When true, offscreen child views (whose overflow value is hidden) are removed from their native backing superview when offscreen. This can improve scrolling performance on long lists. The default value is true. | `boolean` | true |
@@ -285,8 +285,14 @@ Inorder to use these props, make sure `enableCameraRoll` prop is set to `true`.
 
 #### Install
 
-```javascript
+```bash
 $ npm install @react-native-community/cameraroll --save
+```
+
+or
+
+```bash
+$ yarn add @react-native-community/cameraroll
 ```
 
 #### Linking
@@ -311,8 +317,14 @@ User's permission is required to access the Camera Roll.  Add the following to `
 
 #### Install
 
-```javascript
+```bash
 $ npm install @react-native-community/cameraroll --save
+```
+
+or
+
+```bash
+$ yarn add @react-native-community/cameraroll
 ```
 
 #### Linking

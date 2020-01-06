@@ -58,7 +58,9 @@ export default class ImageViewer extends React.PureComponent {
     onTransformGestureReleased: PropTypes.func,
     maxScale: PropTypes.bool,
     maxOverScrollDistance: PropTypes.number,
-    enableVerticalExit: PropTypes.bool
+    enableVerticalExit: PropTypes.bool,
+    onEndReached: PropTypes.func,
+    onEndReachedThreshold: PropTypes.number
   }
 
   constructor(props) {
@@ -264,6 +266,12 @@ export default class ImageViewer extends React.PureComponent {
           }}
           maxScale={this.props.maxScale}
           maxOverScrollDistance={this.props.maxOverScrollDistance}
+          onEndReached={() => {
+            this.props.getMoreData();
+            this.props.onEndReached &&
+              this.props.onEndReached();
+          }}
+          onEndReachedThreshold={this.props.onEndReachedThreshold}
         />
         {
           renderPageFooter &&
@@ -363,6 +371,12 @@ export default class ImageViewer extends React.PureComponent {
           }}
           maxScale={this.props.maxScale}
           maxOverScrollDistance={this.props.maxOverScrollDistance}
+          onEndReached={() => {
+            this.props.getMoreData();
+            this.props.onEndReached &&
+              this.props.onEndReached();
+          }}
+          onEndReachedThreshold={this.props.onEndReachedThreshold}
         />
         {
           renderPageFooter &&

@@ -99,7 +99,9 @@ export default class CameraRollGallery extends React.PureComponent {
     onTransformGestureReleased: PropTypes.func,
     maxScale: PropTypes.bool,
     maxOverScrollDistance: PropTypes.number,
-    enableVerticalExit: PropTypes.bool
+    enableVerticalExit: PropTypes.bool,
+    onEndReached: PropTypes.func,
+    onEndReachedThreshold: PropTypes.number
   }
 
   static defaultProps = {
@@ -117,6 +119,7 @@ export default class CameraRollGallery extends React.PureComponent {
     imageContainerStyle: {},
     sensitivePageScroll: false,
     enableVerticalExit: true,
+    onEndReachedThreshold: 0.8,
     permissionDialogTitle: "Read Storage Permission",
     permissionDialogMessage: "Needs access to your photos " +
       "so you can use these awesome services.",
@@ -133,7 +136,9 @@ export default class CameraRollGallery extends React.PureComponent {
       displayImageViewer: false,
       galleryInitialIndex: 0,
       galleryIndex: 0,
-      imageId: undefined
+      imageId: undefined,
+      loadingMore: false,
+      noMore: false,
     };
     this._imageMeasurers = {};
     this._imageSizeMeasurers = {};
@@ -178,10 +183,27 @@ export default class CameraRollGallery extends React.PureComponent {
     });
   }
 
+  getMoreData = () => {
+    if (!this.state.noMore) {
+      this._cameraRollBrowser.fetch();
+    }
+  }
+
+  setLoadingMore = (bool) => {
+    this.setState({ loadingMore: bool });
+  }
+
+  setNoMore = (bool) => {
+    this.setState({ noMore: bool });
+  }
+
   render() {
     return (
       <View style={styles.container} {...this.props}>
         <CameraRollBrowser
+          ref={(component) => {
+            this._cameraRollBrowser = component;
+          }}
           enableCameraRoll={this.props.enableCameraRoll}
           onGetData={this.props.onGetData}
           itemCount={this.props.itemCount}
@@ -204,6 +226,8 @@ export default class CameraRollGallery extends React.PureComponent {
           imageContainerStyle={this.props.imageContainerStyle}
           renderIndividualHeader={this.props.renderIndividualHeader}
           renderIndividualFooter={this.props.renderIndividualFooter}
+          onEndReached={this.props.onEndReached}
+          onEndReachedThreshold={this.props.onEndReachedThreshold}
 
           openImageViewer={this.openImageViewer}
           displayImageViewer={this.state.displayImageViewer}
@@ -215,6 +239,11 @@ export default class CameraRollGallery extends React.PureComponent {
           permissionDialogMessage={this.props.permissionDialogMessage}
           pendingAuthorizedView={this.props.pendingAuthorizedView}
           notAuthorizedView={this.props.notAuthorizedView}
+
+          setLoadingMore={this.setLoadingMore}
+          setNoMore={this.setNoMore}
+          loadingMore={this.state.loadingMore}
+          noMore={this.state.noMore}
         />
         {this.state.displayImageViewer &&
           this.state.imageId &&
@@ -267,6 +296,10 @@ export default class CameraRollGallery extends React.PureComponent {
                     maxScale={this.props.maxScale}
                     maxOverScrollDistance={this.props.maxOverScrollDistance}
                     enableVerticalExit={this.props.enableVerticalExit}
+
+                    getMoreData={this.getMoreData}
+                    onEndReached={this.props.onEndReached}
+                    onEndReachedThreshold={this.props.onEndReachedThreshold}
                   />
               </Modal>
             </SafeAreaView>

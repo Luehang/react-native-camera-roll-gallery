@@ -49,6 +49,8 @@ export default class CameraRollBrowser extends React.PureComponent {
     imageContainerStyle: PropTypes.object,
     renderIndividualHeader: PropTypes.func,
     renderIndividualFooter: PropTypes.func,
+    onEndReached: PropTypes.func,
+    onEndReachedThreshold: PropTypes.number,
 
     openImageViewer: PropTypes.func.isRequired,
 		displayImageViewer: PropTypes.bool.isRequired,
@@ -77,8 +79,6 @@ export default class CameraRollBrowser extends React.PureComponent {
         ? "granted" : Platform.OS === "ios"
         ? "granted" : "denied",
       initialLoading: true,
-      loadingMore: false,
-      noMore: false,
     };
   }
 
@@ -116,8 +116,9 @@ export default class CameraRollBrowser extends React.PureComponent {
   }
 
   fetch = () => {
-    if (!this.state.loadingMore) {
-      this.setState({ loadingMore: true }, () => { this._fetch(); });
+    if (!this.props.loadingMore) {
+      this.props.setLoadingMore(true);
+      this._fetch();
     }
   }
 
@@ -165,13 +166,8 @@ export default class CameraRollBrowser extends React.PureComponent {
     var assets = data.edges;
 
     var newState = {
-      loadingMore: false,
       initialLoading: false,
     };
-
-    if (!data.page_info.has_next_page) {
-      newState.noMore = true;
-    }
 
     if (assets.length > 0) {
       var extractedData = assets.map((asset, index) => {
@@ -193,12 +189,16 @@ export default class CameraRollBrowser extends React.PureComponent {
       this.props.setMediaData(extractedData);
     }
 
+    if (!data.page_info.has_next_page) {
+      this.props.setNoMore(true);
+    }
+
+    this.props.setLoadingMore(false);
     this.setState(newState);
   }
 
   _appendRemoteImages = async (fetchParams) => {
     var newState = {
-      loadingMore: false,
       initialLoading: false,
     };
     var data;
@@ -211,12 +211,6 @@ export default class CameraRollBrowser extends React.PureComponent {
 
     if (typeof data === "object") {
       var assets = data.assets;
-      if (
-        !data.pageInfo
-        || (data.pageInfo && !data.pageInfo.hasNextPage)
-      ) {
-        newState.noMore = true;
-      }
 
       if (assets && assets.length > 0) {
         var extractedData = assets
@@ -238,6 +232,14 @@ export default class CameraRollBrowser extends React.PureComponent {
       }
     }
 
+    if (
+      !data.pageInfo
+      || (data.pageInfo && !data.pageInfo.hasNextPage)
+    ) {
+      this.props.setNoMore(true);
+    }
+
+    this.props.setLoadingMore(false);
     this.setState(newState);
   }
 
@@ -287,7 +289,12 @@ export default class CameraRollBrowser extends React.PureComponent {
           removeClippedSubviews={removeClippedSubviews}
           ListHeaderComponent={this.props.cameraRollListHeader}
           ListFooterComponent={this.props.cameraRollListFooter}
-          onEndReached={this._onEndReached}
+          onEndReached={() => {
+            this._onEndReached();
+            this.props.onEndReached &&
+              this.props.onEndReached();
+          }}
+          onEndReachedThreshold={this.props.onEndReachedThreshold}
           {...cameraRollFlatListProps}
           data={images}
           renderItem={this._renderImage}
@@ -370,7 +377,7 @@ export default class CameraRollBrowser extends React.PureComponent {
   }
 
   _onEndReached = () => {
-    if (!this.state.noMore) {
+    if (!this.props.noMore) {
       this.fetch();
     }
   }

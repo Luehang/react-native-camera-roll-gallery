@@ -188,7 +188,7 @@ render() {
 | `imageMargin`                 | Margin size of one image. | `number` | 5 |
 | `containerWidth`              | Width of Camera Roll layout container. | `number` | device width |
 | `initialNumToRender`          | Specifies how many items we want to render on our first render pass for the Camera Roll layout. | `number` | 6 |
-| `itemCount`                   | The number of item to fetch and render. **Version \*3.0.0 update** | `number` | 500 |
+| `itemCount`                   | The number of item to fetch and render. **Version \*3.0.0 update** | `number` | 200 |
 | `groupTypes`                  | The group where the photos will be fetched, one of "Album", "All", "Event", "Faces", "Library", "PhotoStream" and "SavedPhotos". | `string` | "All" |
 | `assetType`                   | The asset type, one of "Photos", "Videos" or "All". | `string` | "Photos" |
 | `removeClippedSubViews`       | "When true, offscreen child views (whose overflow value is hidden) are removed from their native backing superview when offscreen. This can improve scrolling performance on long lists. The default value is true. | `boolean` | true |
@@ -203,6 +203,8 @@ render() {
 | `imageContainerStyle`         | The styles object which is added to the Image component. | `object` | {} |
 | `renderIndividualHeader`      | Custom function that is executed **ABOVE** each individual image.  `(item: object, index: number, onClose: Function) => ?React.Element` | `Function` | |
 | `renderIndividualFooter`      | Custom function that is executed **BELOW** each individual image.  `(item: object, index: number, onClose: Function) => ?React.Element` | `Function` | |
+| `onEndReached`                | Called once when the scroll position gets within `onEndReachedThreshold` of the rendered content. `() => void` **Version \*4.1.0 update** | `function` | |
+| `onEndReachedThreshold`       | How far from the end (in units of visible length of the list) the bottom edge of the list must be from the end of the content to trigger the `onEndReached` callback. Thus a value of 0.5 will trigger `onEndReached` when the end of the content is within half the visible length of the list. **Version \*4.1.0 update** | `number` | |
 
 <br/>
 <br/>

@@ -196,14 +196,18 @@ export default class CameraRollBrowser extends React.PureComponent {
     this.setState(newState);
   }
 
-  _appendRemoteImages = () => {
+  _appendRemoteImages = async (fetchParams) => {
     var newState = {
       loadingMore: false,
       initialLoading: false,
     };
+    var data;
 
-    var data = this.props.onGetData
-      && this.props.onGetData();
+    if (this.props.onGetData) {
+      data = await new Promise((resolve) => {
+          this.props.onGetData(fetchParams, resolve);
+      });
+    }
 
     if (typeof data === "object") {
       var assets = data.assets;

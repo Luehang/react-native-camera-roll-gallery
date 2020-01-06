@@ -106,7 +106,7 @@ export default class CameraRollGallery extends React.PureComponent {
 
   static defaultProps = {
     enableCameraRoll: true,
-    itemCount: 500,
+    itemCount: 200,
     imagesPerRow: 3,
     initialNumToRender: 6,
     removeClippedSubviews: true,

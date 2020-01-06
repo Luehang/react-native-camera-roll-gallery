@@ -90,7 +90,7 @@ $ yarn add react-native-camera-roll-gallery
 
 ## :tada: Example Usage Customization
 
-**Version \*3.0.0 update**
+**Version \*4.0.0 update**
 
 > If you like [`react-native-camera-roll-gallery`](https://github.com/Luehang/react-native-camera-roll-gallery), please be sure to give it a star at [GitHub](https://github.com/Luehang/react-native-camera-roll-gallery). Thanks.
 
@@ -106,8 +106,8 @@ render() {
             // This will get trigger initially
             // and when it reached the end
             // if there is more.
-            onGetData={() => {
-                return {
+            onGetData={(fetchParams, resolve) => {
+                resolve({
                     assets: [
                         // Can be used with different image object fieldnames.
                         // Ex. source, source.uri, uri, URI, url, URL
@@ -127,7 +127,7 @@ render() {
                     pageInfo: {
                         hasNextPage: false
                     }
-                }
+                });
             }}
         />
     );
@@ -183,7 +183,7 @@ render() {
 | Props | Description | Type | Default |
 | ----- | ----------- | ---- | ------- |
 | `enableCameraRoll`            | Enable the provide default CameraRoll. **Version \*3.0.0 update** | `boolean` | `true` |
-| `onGetData`                   | Custom function to render provided images from initial to when reaching the end.  "Get" data logic should go here. `({ itemCount: number, groupTypes: string, assetType: string }) => { assets: object, pageInfo: { hasNextPage: boolean } }` Find an example at the [example section](#tada-example-usage-customization). **Version \*3.0.0 update** | `Function` | |
+| `onGetData`                   | Custom function to render provided images from initial to when reaching the end.  "Get" data logic should go here. `(fetchParams: { itemCount: number, groupTypes: string, assetType: string }, resolve: Function) => { assets: object, pageInfo: { hasNextPage: boolean } }` Find an example at the [example section](#tada-example-usage-customization). **Version \*4.0.0 update** | `Function` | |
 | `imagesPerRow`                | Number of images per row. | `number` | 3 |
 | `imageMargin`                 | Margin size of one image. | `number` | 5 |
 | `containerWidth`              | Width of Camera Roll layout container. | `number` | device width |

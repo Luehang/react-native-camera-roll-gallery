@@ -68,6 +68,9 @@ export default class CameraRollBrowser extends React.PureComponent {
       PropTypes.node,
       // PropTypes.func
     ]),
+
+    setMainState: PropTypes.func.isRequired,
+    totalCount: PropTypes.number.isRequired
   }
 
   constructor(props) {
@@ -115,18 +118,24 @@ export default class CameraRollBrowser extends React.PureComponent {
     }
   }
 
-  fetch = () => {
+  fetch = (ref = false) => {
     if (!this.props.loadingMore) {
       this.props.setLoadingMore(true);
-      this._fetch();
+      this._fetch(ref);
     }
   }
 
-  _fetch = () => {
-    var { itemCount, groupTypes, assetType, catchGetPhotosError } = this.props;
+  _fetch = (ref = false) => {
+    var {
+      totalCount,
+      itemCount,
+      groupTypes,
+      assetType,
+      catchGetPhotosError
+    } = this.props;
 
     var fetchParams = {
-      first: itemCount,
+      first: totalCount + itemCount,
       groupTypes: groupTypes,
       assetType: assetType,
     };
@@ -148,13 +157,14 @@ export default class CameraRollBrowser extends React.PureComponent {
         CameraRoll = require("react-native").CameraRoll;
       }
       CameraRoll.getPhotos(fetchParams)
-        .then((data) => this._appendImages(data))
+        .then((data) => this._appendImages(data, ref))
         .catch((e) => {
           catchGetPhotosError &&
             catchGetPhotosError(e);
         });
     } else {
       this._appendRemoteImages({
+        previousCount: totalCount,
         itemCount: fetchParams.first,
         groupTypes: fetchParams.groupTypes,
         assetType: fetchParams.assetType
@@ -162,8 +172,14 @@ export default class CameraRollBrowser extends React.PureComponent {
     }
   }
 
-  _appendImages = (data) => {
+  _appendImages = (data, ref = false) => {
+    var { totalCount, itemCount } = this.props;
     var assets = data.edges;
+
+    var newMainState = {
+      totalCount: totalCount + itemCount,
+      loadingMore: false,
+    };
 
     var newState = {
       initialLoading: false,
@@ -190,18 +206,27 @@ export default class CameraRollBrowser extends React.PureComponent {
     }
 
     if (!data.page_info.has_next_page) {
-      this.props.setNoMore(true);
+      newMainState.noMore = true;
     }
 
-    this.props.setLoadingMore(false);
-    this.setState(newState);
+    this.props.setMainState(newMainState);
+    if (!ref) {
+      this.setState(newState);
+    }
   }
 
-  _appendRemoteImages = async (fetchParams) => {
+  _appendRemoteImages = async (fetchParams, ref = false) => {
+    var { totalCount, itemCount } = this.props;
+    var data;
+
+    var newMainState = {
+      totalCount: totalCount + itemCount,
+      loadingMore: false,
+    };
+
     var newState = {
       initialLoading: false,
     };
-    var data;
 
     if (this.props.onGetData) {
       data = await new Promise((resolve) => {
@@ -236,11 +261,13 @@ export default class CameraRollBrowser extends React.PureComponent {
       !data.pageInfo
       || (data.pageInfo && !data.pageInfo.hasNextPage)
     ) {
-      this.props.setNoMore(true);
+      newMainState.noMore = true;
     }
 
-    this.props.setLoadingMore(false);
-    this.setState(newState);
+    this.props.setMainState(newMainState);
+    if (!ref) {
+      this.setState(newState);
+    }
   }
 
   render() {

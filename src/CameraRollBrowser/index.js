@@ -55,7 +55,6 @@ export default class CameraRollBrowser extends React.PureComponent {
     openImageViewer: PropTypes.func.isRequired,
 		displayImageViewer: PropTypes.bool.isRequired,
 		displayedImageId: PropTypes.string,
-    setMediaData: PropTypes.func.isRequired,
 
     loaderColor: PropTypes.string,
     permissionDialogTitle: PropTypes.string,
@@ -70,7 +69,9 @@ export default class CameraRollBrowser extends React.PureComponent {
     ]),
 
     setMainState: PropTypes.func.isRequired,
-    totalCount: PropTypes.number.isRequired
+    totalCount: PropTypes.number.isRequired,
+    loadingMore: PropTypes.bool.isRequired,
+    noMore: PropTypes.bool.isRequired
   }
 
   constructor(props) {
@@ -120,7 +121,7 @@ export default class CameraRollBrowser extends React.PureComponent {
 
   fetch = (ref = false) => {
     if (!this.props.loadingMore) {
-      this.props.setLoadingMore(true);
+      this.props.setMainState({ loadingMore: true });
       this._fetch(ref);
     }
   }
@@ -202,7 +203,7 @@ export default class CameraRollBrowser extends React.PureComponent {
         };
       });
       newState.lastCursor = data.page_info.end_cursor;
-      this.props.setMediaData(extractedData);
+      this.props.setMainState({ resolvedData: extractedData });
     }
 
     if (!data.page_info.has_next_page) {
@@ -253,7 +254,7 @@ export default class CameraRollBrowser extends React.PureComponent {
             }
           });
 
-        this.props.setMediaData(extractedData);
+        this.props.setMainState({ resolvedData: extractedData });
       }
     }
 

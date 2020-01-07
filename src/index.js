@@ -165,10 +165,6 @@ export default class CameraRollGallery extends React.PureComponent {
     };
   }
 
-  _setMediaData = (data) => {
-    this.setState({ resolvedData: data });
-  }
-
   openImageViewer = async (imageId, index) => {
     await this.setState({ displayImageViewer: true, imageId, galleryInitialIndex: index });
   }
@@ -188,14 +184,6 @@ export default class CameraRollGallery extends React.PureComponent {
     if (!this.state.noMore) {
       this._cameraRollBrowser.fetch(true);
     }
-  }
-
-  setLoadingMore = (bool) => {
-    this.setState({ loadingMore: bool });
-  }
-
-  setNoMore = (bool) => {
-    this.setState({ noMore: bool });
   }
 
   setMainState = (newState) => {
@@ -237,7 +225,6 @@ export default class CameraRollGallery extends React.PureComponent {
           openImageViewer={this.openImageViewer}
           displayImageViewer={this.state.displayImageViewer}
           displayedImageId={this.state.imageId}
-          setMediaData={this._setMediaData}
 
           loaderColor={this.props.loaderColor}
           permissionDialogTitle={this.props.permissionDialogTitle}
@@ -247,8 +234,6 @@ export default class CameraRollGallery extends React.PureComponent {
 
           setMainState={this.setMainState}
           totalCount={this.state.totalCount}
-          setLoadingMore={this.setLoadingMore}
-          setNoMore={this.setNoMore}
           loadingMore={this.state.loadingMore}
           noMore={this.state.noMore}
         />

@@ -183,12 +183,12 @@ render() {
 | Props | Description | Type | Default |
 | ----- | ----------- | ---- | ------- |
 | `enableCameraRoll`            | Enable the provide default CameraRoll. **Version \*3.0.0 update** | `boolean` | `true` |
-| `onGetData`                   | Custom function to render provided images from initial to when reaching the end.  "Get" data logic should go here. `(fetchParams: { itemCount: number, groupTypes: string, assetType: string }, resolve: Function) => { assets: object, pageInfo: { hasNextPage: boolean } }` Find an example at the [example section](#tada-example-usage-customization). **Version \*4.0.0 update** | `Function` | |
+| `onGetData`                   | Custom function to render provided images from initial to when reaching the end.  "Get" data logic should go here. `(fetchParams: { previousCount: number, itemCount: number, groupTypes: string, assetType: string }, resolve: Function) => { assets: object, pageInfo: { hasNextPage: boolean } }` Find an example at the [example section](#tada-example-usage-customization). **Version \*4.0.0 update** | `Function` | |
 | `imagesPerRow`                | Number of images per row. | `number` | 3 |
 | `imageMargin`                 | Margin size of one image. | `number` | 5 |
 | `containerWidth`              | Width of Camera Roll layout container. | `number` | device width |
 | `initialNumToRender`          | Specifies how many items we want to render on our first render pass for the Camera Roll layout. | `number` | 6 |
-| `itemCount`                   | The number of item to fetch and render. **Version \*3.0.0 update** | `number` | 200 |
+| `itemCount`                   | The number of item to fetch and render. **Version \*3.0.0 update** | `number` | 25 |
 | `groupTypes`                  | The group where the photos will be fetched, one of "Album", "All", "Event", "Faces", "Library", "PhotoStream" and "SavedPhotos". | `string` | "All" |
 | `assetType`                   | The asset type, one of "Photos", "Videos" or "All". | `string` | "Photos" |
 | `removeClippedSubViews`       | "When true, offscreen child views (whose overflow value is hidden) are removed from their native backing superview when offscreen. This can improve scrolling performance on long lists. The default value is true. | `boolean` | true |

@@ -12,11 +12,12 @@ Check out the [docs](https://luehangs.site/lue_hang/projects/react-native-camera
 - Choose a custom way to get images or use default CameraRoll getter.
 - Optimized for large list rendering of images.
 - Swipe up and down to close images with animations to original place. Supports iOS and Android.
+- Pull to Refresh.
+- Scroll loading.
 - Support for dynamic device rotation.
 - Easily and highly customizable.
 - Includes guestures and important event listeners for pan, pinch, single tap and double tap.
 - Includes zoom mode.
-- Easily customizable.
 - Intelligent scrolling detection to cushion rough swipe guestures.
 - Supports both iOS and Android.
 

@@ -7,6 +7,7 @@ import {
   View,
   Text,
   ActivityIndicator,
+  TouchableHighlightBase,
 } from "react-native";
 import { findUri } from "../utils";
 import PropTypes from "prop-types";
@@ -53,8 +54,6 @@ export default class CameraRollBrowser extends React.PureComponent {
     onEndReachedThreshold: PropTypes.number,
 
     openImageViewer: PropTypes.func.isRequired,
-		displayImageViewer: PropTypes.bool.isRequired,
-		displayedImageId: PropTypes.string,
 
     loaderColor: PropTypes.string,
     permissionDialogTitle: PropTypes.string,
@@ -67,8 +66,10 @@ export default class CameraRollBrowser extends React.PureComponent {
       PropTypes.node,
       // PropTypes.func
     ]),
+    keyExtractor: PropTypes.func,
 
     setMainState: PropTypes.func.isRequired,
+    setAssets: PropTypes.func.isRequired,
     totalCount: PropTypes.number.isRequired,
     loadingMore: PropTypes.bool.isRequired,
     noMore: PropTypes.bool.isRequired
@@ -129,11 +130,11 @@ export default class CameraRollBrowser extends React.PureComponent {
   _fetch = (ref = false) => {
     var {
       totalCount,
-      itemCount,
       groupTypes,
       assetType,
       catchGetPhotosError
     } = this.props;
+    var itemCount = Platform.OS === "ios" ? 2500 : this.props.itemCount;
 
     var fetchParams = {
       first: totalCount + itemCount,
@@ -187,23 +188,25 @@ export default class CameraRollBrowser extends React.PureComponent {
     };
 
     if (assets.length > 0) {
-      var extractedData = assets.map((asset, index) => {
-        return {
-          index: index,
-          id: Math.random().toString(36).substring(7),
-          source: {
-            uri: asset.node.image.uri
-          },
-          dimensions: {
-            width: asset.node.image.width,
-            height: asset.node.image.height
-          },
-          ...asset.node,
-          ...asset.node.image
-        };
-      });
+      var extractedData = assets
+        .slice(totalCount)
+        .map((asset, index) => {
+          return {
+            index: index,
+            id: Math.random().toString(36).substring(7),
+            source: {
+              uri: asset.node.image.uri
+            },
+            dimensions: {
+              width: asset.node.image.width,
+              height: asset.node.image.height
+            },
+            ...asset.node,
+            ...asset.node.image
+          };
+        });
       newState.lastCursor = data.page_info.end_cursor;
-      this.props.setMainState({ resolvedData: extractedData });
+      this.props.setAssets(extractedData);
     }
 
     if (!data.page_info.has_next_page) {
@@ -254,7 +257,7 @@ export default class CameraRollBrowser extends React.PureComponent {
             }
           });
 
-        this.props.setMainState({ resolvedData: extractedData });
+        this.props.setAssets(extractedData);
       }
     }
 
@@ -326,7 +329,7 @@ export default class CameraRollBrowser extends React.PureComponent {
           {...cameraRollFlatListProps}
           data={images}
           renderItem={this._renderImage}
-          keyExtractor={(item, index) => item.id + index.toString()}
+          keyExtractor={(item, index) => "imageCell#" + index.toString()}
         />
       : this._renderData([{
         text: emptyText,
@@ -349,15 +352,19 @@ export default class CameraRollBrowser extends React.PureComponent {
         ListFooterComponent={this.props.cameraRollListFooter}
         data={data}
         renderItem={this._renderError}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item, index) => {
+          if (this.props.keyExtractor) {
+            this.props.keyExtractor();
+          } else {
+            index.toString();
+          }
+        }}
       />
     );
   }
 
   _renderImage = ({ item, index }) => {
     var {
-      displayImageViewer,
-      displayedImageId,
       imageMargin,
       imagesPerRow,
       containerWidth,
@@ -369,15 +376,10 @@ export default class CameraRollBrowser extends React.PureComponent {
 
     return (
       <ImageCell
-        key={item.uri}
         index={index}
         data={item}
 				imageId={item.id}
 				source={{ uri: item.uri }}
-				shouldHideDisplayedImage={
-					displayImageViewer
-					&& displayedImageId === item.id
-				}
         imageMargin={imageMargin}
         imagesPerRow={imagesPerRow}
         containerWidth={containerWidth}

@@ -12,9 +12,6 @@ import CameraRollBrowser from "./CameraRollBrowser";
 import ImageViewer from "./ImageViewer";
 
 export default class CameraRollGallery extends React.PureComponent {
-  _imageMeasurers: { [imageId: string]: () => void }
-  _imageSizeMeasurers: { [imageId: string]: () => void }
-
   static propTypes = {
     enableCameraRoll: PropTypes.bool,
     onGetData: PropTypes.func,
@@ -101,12 +98,13 @@ export default class CameraRollGallery extends React.PureComponent {
     maxOverScrollDistance: PropTypes.number,
     enableVerticalExit: PropTypes.bool,
     onEndReached: PropTypes.func,
-    onEndReachedThreshold: PropTypes.number
+    onEndReachedThreshold: PropTypes.number,
+    keyExtractor: PropTypes.func,
   }
 
   static defaultProps = {
     enableCameraRoll: true,
-    itemCount: 25,
+    itemCount: 100,
     imagesPerRow: 3,
     initialNumToRender: 6,
     removeClippedSubviews: true,
@@ -125,10 +123,6 @@ export default class CameraRollGallery extends React.PureComponent {
       "so you can use these awesome services.",
   }
 
-  static childContextTypes = {
-    onSourceContext: PropTypes.func.isRequired
-  }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -140,28 +134,6 @@ export default class CameraRollGallery extends React.PureComponent {
       loadingMore: false,
       noMore: false,
       totalCount: 0
-    };
-    this._imageMeasurers = {};
-    this._imageSizeMeasurers = {};
-  }
-
-  getChildContext() {
-    return { onSourceContext: this._onSourceContext };
-  }
-
-  _onSourceContext = (
-    imageId,
-    cellMeasurer,
-    imageMeasurer
-  ) => {
-    this._imageMeasurers[imageId] = cellMeasurer;
-    this._imageSizeMeasurers[imageId] = imageMeasurer;
-  }
-
-  _getSourceContext = (imageId) => {
-    return {
-      measurer: this._imageMeasurers[imageId],
-      imageSizeMeasurer: this._imageSizeMeasurers[imageId]
     };
   }
 
@@ -188,6 +160,12 @@ export default class CameraRollGallery extends React.PureComponent {
 
   setMainState = (newState) => {
     this.setState(newState);
+  }
+
+  setAssets = (data) => {
+    this.setState({
+      resolvedData: this.state.resolvedData.concat(data)
+    });
   }
 
   render() {
@@ -221,6 +199,7 @@ export default class CameraRollGallery extends React.PureComponent {
           renderIndividualFooter={this.props.renderIndividualFooter}
           onEndReached={this.props.onEndReached}
           onEndReachedThreshold={this.props.onEndReachedThreshold}
+          keyExtractor={this.props.keyExtractor}
 
           openImageViewer={this.openImageViewer}
           displayImageViewer={this.state.displayImageViewer}
@@ -233,6 +212,7 @@ export default class CameraRollGallery extends React.PureComponent {
           notAuthorizedView={this.props.notAuthorizedView}
 
           setMainState={this.setMainState}
+          setAssets={this.setAssets}
           totalCount={this.state.totalCount}
           loadingMore={this.state.loadingMore}
           noMore={this.state.noMore}
@@ -254,7 +234,6 @@ export default class CameraRollGallery extends React.PureComponent {
                     galleryIndex={this.state.galleryIndex}
                     onClose={this.closeImageViewer}
                     onChangePhoto={this.onChangePhoto}
-                    getSourceContext={this._getSourceContext}
                     displayImageViewer={this.state.displayImageViewer}
 
                     imagePageComponent={this.props.imagePageComponent}

@@ -167,7 +167,7 @@ export default class CameraRollBrowser extends React.PureComponent {
     } else {
       this._appendRemoteImages({
         previousCount: totalCount,
-        itemCount: fetchParams.first,
+        itemCount: this.props.itemCount,
         groupTypes: fetchParams.groupTypes,
         assetType: fetchParams.assetType
       });
@@ -220,11 +220,10 @@ export default class CameraRollBrowser extends React.PureComponent {
   }
 
   _appendRemoteImages = async (fetchParams, ref = false) => {
-    var { totalCount, itemCount } = this.props;
+    var { totalCount } = this.props;
     var data;
 
     var newMainState = {
-      totalCount: totalCount + itemCount,
       loadingMore: false,
     };
 
@@ -257,6 +256,7 @@ export default class CameraRollBrowser extends React.PureComponent {
             }
           });
 
+        newMainState.total = totalCount + extractedData.length;
         this.props.setAssets(extractedData);
       }
     }

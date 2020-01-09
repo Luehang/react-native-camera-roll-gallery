@@ -6,8 +6,7 @@ import {
   FlatList,
   View,
   Text,
-  ActivityIndicator,
-  TouchableHighlightBase,
+  ActivityIndicator
 } from "react-native";
 import { findUri } from "../utils";
 import PropTypes from "prop-types";
@@ -131,10 +130,9 @@ export default class CameraRollBrowser extends React.PureComponent {
     var {
       totalCount,
       groupTypes,
-      assetType,
-      catchGetPhotosError
+      assetType
     } = this.props;
-    var itemCount = Platform.OS === "ios" ? 2500 : this.props.itemCount;
+    var itemCount = this.props.itemCount;
 
     var fetchParams = {
       first: totalCount + itemCount,
@@ -152,20 +150,9 @@ export default class CameraRollBrowser extends React.PureComponent {
     }
 
     if (this.props.enableCameraRoll) {
-      var CameraRoll;
-      if (parseFloat(require("react-native/package.json").version) >= 0.6) {
-        CameraRoll = require("@react-native-community/cameraroll");
-      } else {
-        CameraRoll = require("react-native").CameraRoll;
-      }
-      CameraRoll.getPhotos(fetchParams)
-        .then((data) => this._appendImages(data, ref))
-        .catch((e) => {
-          catchGetPhotosError &&
-            catchGetPhotosError(e);
-        });
+      this._fetchImages(fetchParams, ref);
     } else {
-      this._appendRemoteImages({
+      this._fetchRemoteImages({
         previousCount: totalCount,
         itemCount: this.props.itemCount,
         groupTypes: fetchParams.groupTypes,
@@ -174,12 +161,13 @@ export default class CameraRollBrowser extends React.PureComponent {
     }
   }
 
-  _appendImages = (data, ref = false) => {
-    var { totalCount, itemCount } = this.props;
-    var assets = data.edges;
+  _fetchImages = async (fetchParams, ref = false) => {
+    var { totalCount } = this.props;
+    var {
+      catchGetPhotosError
+    } = this.props;
 
     var newMainState = {
-      totalCount: totalCount + itemCount,
       loadingMore: false,
     };
 
@@ -187,27 +175,58 @@ export default class CameraRollBrowser extends React.PureComponent {
       initialLoading: false,
     };
 
-    if (assets.length > 0) {
-      var extractedData = assets
-        .slice(totalCount)
-        .map((asset, index) => {
-          return {
-            index: index,
-            id: Math.random().toString(36).substring(7),
-            source: {
-              uri: asset.node.image.uri
-            },
-            dimensions: {
-              width: asset.node.image.width,
-              height: asset.node.image.height
-            },
-            ...asset.node,
-            ...asset.node.image
-          };
+    var data = await new Promise((resolve) => {
+      var CameraRoll;
+      if (parseFloat(require("react-native/package.json").version) >= 0.6) {
+        CameraRoll = require("@react-native-community/cameraroll");
+      } else {
+        CameraRoll = require("react-native").CameraRoll;
+      }
+      CameraRoll.getPhotos(fetchParams)
+        .then((data) => {
+          const images = data.edges;
+          const parseData = images
+            .slice(totalCount)
+            .map((item) => {
+              return {
+                ...item.node,
+                ...item.node.image
+              };
+            });
+          resolve({
+            assets: parseData,
+            page_info: data.page_info
+          });
+        })
+        .catch((e) => {
+          catchGetPhotosError &&
+            catchGetPhotosError(e);
         });
-      newState.lastCursor = data.page_info.end_cursor;
-      this.props.setAssets(extractedData);
+    });
+
+    if (typeof data === "object") {
+      var assets = data.assets;
+
+      if (assets.length > 0) {
+        var extractedData = assets
+          .map((asset, index) => {
+            return {
+              index: index,
+              id: Math.random().toString(36).substring(7),
+              source: {
+                uri: asset.uri
+              },
+              uri: asset.uri,
+              ...asset,
+            };
+          });
+
+        newMainState.totalCount = totalCount + extractedData.length;
+        this.props.setAssets(extractedData);
+      }
     }
+
+    // newState.lastCursor = data.page_info.end_cursor;
 
     if (!data.page_info.has_next_page) {
       newMainState.noMore = true;
@@ -219,7 +238,7 @@ export default class CameraRollBrowser extends React.PureComponent {
     }
   }
 
-  _appendRemoteImages = async (fetchParams, ref = false) => {
+  _fetchRemoteImages = async (fetchParams, ref = false) => {
     var { totalCount } = this.props;
     var data;
 

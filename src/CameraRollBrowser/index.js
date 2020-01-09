@@ -256,7 +256,7 @@ export default class CameraRollBrowser extends React.PureComponent {
             }
           });
 
-        newMainState.total = totalCount + extractedData.length;
+        newMainState.totalCount = totalCount + extractedData.length;
         this.props.setAssets(extractedData);
       }
     }

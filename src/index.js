@@ -94,6 +94,8 @@ export default class CameraRollGallery extends React.PureComponent {
     ]),
     onViewTransformed: PropTypes.func,
     onTransformGestureReleased: PropTypes.func,
+    onSwipeUpReleased: PropTypes.func,
+    onSwipeDownReleased: PropTypes.func,
     maxScale: PropTypes.bool,
     maxOverScrollDistance: PropTypes.number,
     enableVerticalExit: PropTypes.bool,
@@ -264,6 +266,8 @@ export default class CameraRollGallery extends React.PureComponent {
                     resistantStrVertical={this.props.resistantStrVertical}
                     onViewTransformed={this.props.onViewTransformed}
                     onTransformGestureReleased={this.props.onTransformGestureReleased}
+                    onSwipeUpReleased={this.props.onSwipeUpReleased}
+                    onSwipeDownReleased={this.props.onSwipeDownReleased}
                     maxScale={this.props.maxScale}
                     maxOverScrollDistance={this.props.maxOverScrollDistance}
                     enableVerticalExit={this.props.enableVerticalExit}

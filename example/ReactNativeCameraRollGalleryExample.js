@@ -108,7 +108,11 @@ const styles = StyleSheet.create({
   },
   header: {
     height: isIPhoneX() ? 88 : 64,
-    backgroundColor: "transparent"
+    backgroundColor: "transparent",
+    top: 0,
+    width: "100%",
+    position: "absolute",
+    zIndex: 1000
   },
   mobileHeader: {
     width: deviceWidth,

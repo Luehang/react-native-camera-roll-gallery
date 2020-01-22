@@ -99,6 +99,7 @@ export default class CameraRollGallery extends React.PureComponent {
     maxScale: PropTypes.bool,
     maxOverScrollDistance: PropTypes.number,
     enableVerticalExit: PropTypes.bool,
+    enableModal: PropTypes.bool,
     onEndReached: PropTypes.func,
     onEndReachedThreshold: PropTypes.number,
     keyExtractor: PropTypes.func,
@@ -119,6 +120,7 @@ export default class CameraRollGallery extends React.PureComponent {
     imageContainerStyle: {},
     sensitivePageScroll: false,
     enableVerticalExit: true,
+    enableModal: false,
     onEndReachedThreshold: 0.8,
     permissionDialogTitle: "Read Storage Permission",
     permissionDialogMessage: "Needs access to your photos " +
@@ -171,6 +173,20 @@ export default class CameraRollGallery extends React.PureComponent {
   }
 
   render() {
+    let Injectant;
+    const injectantProps = {};
+    if (this.props.enableModal) {
+      Injectant = Modal;
+      injectantProps.visible = this.state.displayImageViewer &&
+        this.state.imageId ? true : false;
+      injectantProps.transparent = true;
+      injectantProps.animationType = Platform.OS === "ios" ? "none" : "fade";
+      injectantProps.hardwareAccelerated = true;
+      injectantProps.onRequestClose = this.closeImageViewer;
+    } else {
+      Injectant = View;
+    }
+
     return (
       <View style={styles.container} {...this.props}>
         <CameraRollBrowser
@@ -223,12 +239,8 @@ export default class CameraRollGallery extends React.PureComponent {
           this.state.imageId &&
           (
             <SafeAreaView>
-              <Modal
-                visible={this.state.displayImageViewer &&
-                  this.state.imageId ? true : false}
-                transparent={true}
-                animationType={Platform.OS === "ios" ? "none" : "fade"}
-                onRequestClose={this.closeImageViewer}>
+              <Injectant
+                {...injectantProps}>
                   <ImageViewer
                     images={this.state.resolvedData}
                     imageId={this.state.imageId}
@@ -271,12 +283,13 @@ export default class CameraRollGallery extends React.PureComponent {
                     maxScale={this.props.maxScale}
                     maxOverScrollDistance={this.props.maxOverScrollDistance}
                     enableVerticalExit={this.props.enableVerticalExit}
+                    enableModal={this.props.enableModal}
 
                     getMoreData={this.getMoreData}
                     onEndReached={this.props.onEndReached}
                     onEndReachedThreshold={this.props.onEndReachedThreshold}
                   />
-              </Modal>
+              </Injectant>
             </SafeAreaView>
           )}
       </View>

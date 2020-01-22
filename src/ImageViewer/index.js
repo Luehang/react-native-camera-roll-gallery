@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform, Animated, Image, Dimensions } from "react-native";
+import { Platform, Image, Dimensions, View } from "react-native";
 import GallerySwiper from "react-native-gallery-swiper";
 import SmartGallery from "react-native-smart-gallery";
 import PropTypes from "prop-types";
@@ -58,6 +58,7 @@ export default class ImageViewer extends React.PureComponent {
     maxScale: PropTypes.bool,
     maxOverScrollDistance: PropTypes.number,
     enableVerticalExit: PropTypes.bool,
+    enableModal: PropTypes.bool,
     onEndReached: PropTypes.func,
     onEndReachedThreshold: PropTypes.number
   }
@@ -65,8 +66,8 @@ export default class ImageViewer extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      width: new Animated.Value(Dimensions.get("window").width),
-      height: new Animated.Value(Dimensions.get("window").height)
+      width: Dimensions.get("window").width,
+      height: Dimensions.get("window").height
     };
   }
 
@@ -81,14 +82,12 @@ export default class ImageViewer extends React.PureComponent {
     width,
     height
   ) {
-    const { renderPageHeader, renderPageFooter, images, galleryIndex, onClose } = this.props;
+    const {
+      renderPageHeader, renderPageFooter, images,
+      galleryIndex, onClose, enableModal
+    } = this.props;
     return (
-      <Animated.View
-        style={{
-          width: width.__getValue(),
-          height: height.__getValue()
-        }}
-      >
+      <View style={{ width, height }}>
         {
           renderPageHeader
             ? <Header
@@ -97,9 +96,11 @@ export default class ImageViewer extends React.PureComponent {
               galleryIndex={galleryIndex}
               onClose={onClose}
             />
-            : <DefaultHeader
-              onClose={onClose}
-            />
+            : enableModal
+              ? <DefaultHeader
+                onClose={onClose}
+              />
+              : null
         }
         <GallerySwiper
           style={{ flex: 1, backgroundColor: "black" }}
@@ -190,7 +191,7 @@ export default class ImageViewer extends React.PureComponent {
             onClose={onClose}
           />
         }
-      </Animated.View>
+      </View>
     );
   }
 
@@ -198,14 +199,12 @@ export default class ImageViewer extends React.PureComponent {
     width,
     height
   ) {
-    const { renderPageHeader, renderPageFooter, images, galleryIndex, onClose } = this.props;
+    const {
+      renderPageHeader, renderPageFooter, images,
+      galleryIndex, onClose, enableModal
+    } = this.props;
     return (
-      <Animated.View
-        style={{
-          width: width.__getValue(),
-          height: height.__getValue()
-        }}
-      >
+      <View style={{ width, height }}>
         {
           renderPageHeader
             ? <Header
@@ -214,9 +213,11 @@ export default class ImageViewer extends React.PureComponent {
               galleryIndex={galleryIndex}
               onClose={onClose}
             />
-            : <DefaultHeader
-              onClose={onClose}
-            />
+            : enableModal
+              ? <DefaultHeader
+                onClose={onClose}
+              />
+              : null
         }
         <SmartGallery
           images={images}
@@ -288,7 +289,7 @@ export default class ImageViewer extends React.PureComponent {
             onClose={onClose}
           />
         }
-      </Animated.View>
+      </View>
     );
   }
 

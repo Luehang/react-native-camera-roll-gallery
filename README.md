@@ -274,7 +274,7 @@ Inorder to use these props, make sure `enableCameraRoll` prop is set to `true`.
 | `onSwipeDownReleased`         | Executed after releasing a downward swipe at a specific y translate while not in zoom mode. `(transform: { scale: number, translateX: number, translateY: number }, index: number) => void` For custom precision swiping gestures, refer to the `onTransformGestureReleased`. **Version \*4.2.0 update**. | `Function` |
 | `maxOverScrollDistance`       | A number used to determine final scroll position triggered by fling (view transformer). **Version \*2.1.0 update**. | `number` | `20` |
 | `enableVerticalExit`          | Enable or disable exiting from swiping up or down in gallery. **Version \*2.2.0 update**. | `boolean` | `true` |
-| `enableModal`                 | Enable or disable modal for gallery. This also helps with Androids back button. **Version \*5.3.0 update**. | `boolean` | `false` |
+| `enableModal`                 | Enable or disable modal for gallery. This also helps with Androids back button. **Version \*4.3.0 update**. | `boolean` | `false` |
 
 <br/>
 <br/>

@@ -30,8 +30,6 @@ export default class ImageCell extends React.PureComponent {
 			imageLoaded: false
 		};
 
-		Dimensions.addEventListener("change", this.setImageSize);
-
 		var { width } = Dimensions.get("window");
 		var { imageMargin, imagesPerRow, containerWidth } = this.props;
 
@@ -40,6 +38,10 @@ export default class ImageCell extends React.PureComponent {
 		}
 
 		this.state.imageSize = (width - (imagesPerRow + 1) * imageMargin) / imagesPerRow;
+	}
+
+	componentDidMount() {
+		Dimensions.addEventListener("change", this.setImageSize);
 	}
 
 	setImageSize = () => {

@@ -70,8 +70,6 @@ export default class ImageViewer extends React.PureComponent {
       height: Dimensions.get("window").height
     };
 
-    Dimensions.addEventListener("change", this.getLayoutSize);
-
     let { width, height } = Dimensions.get("window");
     const { containerWidth } = this.props;
 

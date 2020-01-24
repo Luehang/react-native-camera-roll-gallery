@@ -188,7 +188,8 @@ export default class CameraRollGallery extends React.PureComponent {
     }
 
     return (
-      <View style={styles.container} {...this.props}>
+      <View style={styles.container}
+        {...this.props}>
         <CameraRollBrowser
           ref={(component) => {
             this._cameraRollBrowser = component;

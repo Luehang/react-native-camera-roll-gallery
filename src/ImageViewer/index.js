@@ -69,6 +69,32 @@ export default class ImageViewer extends React.PureComponent {
       width: Dimensions.get("window").width,
       height: Dimensions.get("window").height
     };
+
+    Dimensions.addEventListener("change", this.getLayoutSize);
+
+    let { width, height } = Dimensions.get("window");
+    const { containerWidth } = this.props;
+
+    if (typeof containerWidth !== "undefined") {
+      width = containerWidth;
+    }
+
+    this.state.width = width;
+    this.state.height = height;
+  }
+
+  getLayoutSize = () => {
+    let { width, height } = Dimensions.get("window");
+    const { containerWidth } = this.props;
+
+    if (typeof containerWidth !== "undefined") {
+      width = containerWidth;
+    }
+
+    this.setState({
+      width,
+      height
+    });
   }
 
   _handleVerticalSwipe = (transform) => {
@@ -292,6 +318,10 @@ export default class ImageViewer extends React.PureComponent {
       </View>
     );
   }
+
+  componentWillUnmount() {
+		Dimensions.removeEventListener("change", this.getLayoutSize);
+	}
 
   render() {
     const {

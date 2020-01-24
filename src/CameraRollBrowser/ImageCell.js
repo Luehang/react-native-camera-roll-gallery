@@ -29,13 +29,30 @@ export default class ImageCell extends React.PureComponent {
 		this.state = {
 			imageLoaded: false
 		};
+
+		Dimensions.addEventListener("change", this.setImageSize);
+
 		var { width } = Dimensions.get("window");
 		var { imageMargin, imagesPerRow, containerWidth } = this.props;
 
 		if (typeof containerWidth !== "undefined") {
 			width = containerWidth;
 		}
-		this._imageSize = (width - (imagesPerRow + 1) * imageMargin) / imagesPerRow;
+
+		this.state.imageSize = (width - (imagesPerRow + 1) * imageMargin) / imagesPerRow;
+	}
+
+	setImageSize = () => {
+		var { width } = Dimensions.get("window");
+		var { imageMargin, imagesPerRow, containerWidth } = this.props;
+
+		if (typeof containerWidth !== "undefined") {
+			width = containerWidth;
+		}
+
+		this.setState({
+			imageSize: (width - (imagesPerRow + 1) * imageMargin) / imagesPerRow
+		});
 	}
 
 	_onPressImage = async (uri) => {
@@ -45,7 +62,14 @@ export default class ImageCell extends React.PureComponent {
 		}
 	}
 
+	componentWillUnmount() {
+		Dimensions.removeEventListener("change", this.setImageSize);
+	}
+
 	render() {
+		const {
+			imageSize
+		} = this.state;
 		const {
 			data, index, source, imageMargin, imagesPerRow,
 			imageContainerStyle, renderIndividualHeader,
@@ -74,8 +98,8 @@ export default class ImageCell extends React.PureComponent {
 					source={source}
 					resizeMode="cover"
 					style={{
-						height: this._imageSize,
-						width: this._imageSize,
+						height: imageSize,
+						width: imageSize,
 						backgroundColor: "lightgrey",
 						...imageContainerStyle
 					}}

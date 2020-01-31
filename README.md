@@ -206,7 +206,7 @@ render() {
 | `renderIndividualFooter`      | Custom function that is executed **BELOW** each individual image.  `(item: object, index: number, onClose: Function) => ?React.Element` | `Function` | |
 | `onEndReached`                | Called once when the scroll position gets within `onEndReachedThreshold` of the rendered content. `() => void` **Version \*4.1.0 update** | `function` | |
 | `onEndReachedThreshold`       | How far from the end (in units of visible length of the list) the bottom edge of the list must be from the end of the content to trigger the `onEndReached` callback. Thus a value of 0.5 will trigger `onEndReached` when the end of the content is within half the visible length of the list. **Version \*4.1.0 update** | `number` | 0.8 |
-| `keyExtractor`                | Used to extract a unique key for a given item at the specified index. Key is used for caching and as the react key to track item re-ordering. The default extractor checks `item.key`, then falls back to using the index, like React does. **Version \*4.2.0 update** | `Function` | 0.8 |
+| `keyExtractor`                | Used to extract a unique key for a given item at the specified index. Key is used for caching and as the react key to track item re-ordering. The default extractor checks `item.key`, then falls back to using the index, like React does. **Version \*4.2.0 update** | `Function` | |
 
 <br/>
 <br/>

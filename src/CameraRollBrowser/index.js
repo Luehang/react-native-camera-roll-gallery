@@ -18,6 +18,7 @@ export default class CameraRollBrowser extends React.PureComponent {
     enableCameraRoll: PropTypes.bool,
     onGetData: PropTypes.func,
     itemCount: PropTypes.number,
+    imageComponent: PropTypes.func,
     images: PropTypes.arrayOf(PropTypes.object).isRequired,
     imagesPerRow: PropTypes.number,
     initialNumToRender: PropTypes.number,
@@ -384,6 +385,7 @@ export default class CameraRollBrowser extends React.PureComponent {
 
   _renderImage = ({ item, index }) => {
     var {
+      imageComponent,
       imageMargin,
       imagesPerRow,
       containerWidth,
@@ -399,6 +401,7 @@ export default class CameraRollBrowser extends React.PureComponent {
         data={item}
 				imageId={item.id}
 				source={{ uri: item.uri }}
+        imageComponent={imageComponent}
         imageMargin={imageMargin}
         imagesPerRow={imagesPerRow}
         containerWidth={containerWidth}

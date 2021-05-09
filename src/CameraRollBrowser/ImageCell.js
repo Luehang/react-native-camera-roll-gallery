@@ -73,7 +73,7 @@ export default class ImageCell extends React.PureComponent {
 			imageSize
 		} = this.state;
 		const {
-			data, index, source, imageMargin, imagesPerRow,
+			data, index, source, imageComponent, imageMargin, imagesPerRow,
 			imageContainerStyle, renderIndividualHeader,
 			renderIndividualFooter
 		} = this.props;
@@ -81,6 +81,16 @@ export default class ImageCell extends React.PureComponent {
 			renderIndividualHeader(data, index);
 		const footer = (renderIndividualFooter) &&
 			renderIndividualFooter(data, index);
+
+		const style = {
+			height: imageSize,
+			width: imageSize,
+			backgroundColor: "lightgrey",
+			...imageContainerStyle
+		}
+
+		const handleLoad = () => this.setState({ imageLoaded: true });
+
 		return (
 			<TouchableOpacity
 				style={{
@@ -93,19 +103,14 @@ export default class ImageCell extends React.PureComponent {
 				onPress={() => this._onPressImage(source.uri)}
 			>
 				{header}
-				<Animated.Image
-					onLoad={() => {
-						this.setState({ imageLoaded: true });
-					}}
-					source={source}
-					resizeMode="cover"
-					style={{
-						height: imageSize,
-						width: imageSize,
-						backgroundColor: "lightgrey",
-						...imageContainerStyle
-					}}
-				/>
+				{imageComponent ? imageComponent({ onLoad: handleLoad, source, style }) :
+					<Animated.Image
+						onLoad={handleLoad}
+						source={source}
+						resizeMode="cover"
+						style={style}
+					/>
+				}
 				{footer}
 			</TouchableOpacity>
 		);

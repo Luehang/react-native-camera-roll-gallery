@@ -35,6 +35,7 @@ export default class CameraRollGallery extends React.PureComponent {
       "Videos",
       "All",
     ]),
+    imageComponent: PropTypes.func,
     imageMargin: PropTypes.number,
     containerWidth: PropTypes.number,
     backgroundColor: PropTypes.string,
@@ -198,6 +199,7 @@ export default class CameraRollGallery extends React.PureComponent {
           onGetData={this.props.onGetData}
           itemCount={this.props.itemCount}
           images={this.state.resolvedData}
+          imageComponent={this.props.imageComponent}
           imagesPerRow={this.props.imagesPerRow}
           initialNumToRender={this.props.initialNumToRender}
           removeClippedSubviews={this.props.removeClippedSubviews}
